@@ -34,16 +34,29 @@
 
   /* ─── NAV ─── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: var(--nav-h);
     background: var(--white);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
+
+    display: flex;
+    align-items: center;
+
     padding: 0 6vw;
+    gap: 2rem;
+
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(27,110,243,.08);
     backdrop-filter: blur(12px);
-    gap: 1rem;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+    margin-left: auto;
   }
 
   .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
@@ -450,7 +463,7 @@
       width: max-content;
       gap: 40px;
 
-      animation: scroll 50s linear infinite;
+      animation: scroll 120s linear infinite;
   }
 
   .logo-track img {
@@ -937,7 +950,29 @@
         <div class="partner-card reveal">Inbox</div>
         <div class="partner-card reveal">Kiip</div>
       </div>
-
+      <div class="partners-grid">
+        <div class="partner-card reveal">Apple</div>
+        <div class="partner-card reveal">Samsung</div>
+        <div class="partner-card reveal">Xiaomi</div>
+        <div class="partner-card reveal">Oppo</div>
+        <div class="partner-card reveal">Vivo</div>
+        <div class="partner-card reveal">Realme</div>
+        <div class="partner-card reveal">Tecno</div>
+        <div class="partner-card reveal">Infinix</div>
+        <div class="partner-card reveal">Intel</div>
+        <div class="partner-card reveal">Soraspace</div>
+        <div class="partner-card reveal">Ugreen</div>
+        <div class="partner-card reveal">Anker</div>
+        <div class="partner-card reveal">Robot</div>
+        <div class="partner-card reveal">Vivan</div>
+        <div class="partner-card reveal">Gamen</div>
+        <div class="partner-card reveal">Acome</div>
+        <div class="partner-card reveal">Olike</div>
+        <div class="partner-card reveal">Jisulife</div>
+        <div class="partner-card reveal">Titon</div>
+        <div class="partner-card reveal">Inbox</div>
+        <div class="partner-card reveal">Kiip</div>
+      </div>
       <div class="partners-grid">
         <div class="partner-card reveal">Apple</div>
         <div class="partner-card reveal">Samsung</div>
