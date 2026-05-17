@@ -43,9 +43,10 @@
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(27,110,243,.08);
     backdrop-filter: blur(12px);
+    gap: 1rem;
   }
 
-  .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
   .logo-icon {
     width: 40px; height: 40px;
     background: linear-gradient(135deg, var(--blue), var(--sky));
@@ -64,11 +65,42 @@
     color: var(--blue); letter-spacing: .5px;
   }
 
+  /* ─── LANG SWITCH ─── */
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+    background: var(--pale);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--slate);
+    padding: 5px 10px;
+    border-radius: 7px;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .lang-btn:hover { color: var(--blue); background: rgba(27,110,243,.08); }
+  .lang-btn.active {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(27,110,243,.3);
+  }
+
   .nav-links { display: flex; gap: 1.8rem; list-style: none; }
   .nav-links a {
     color: var(--slate);
     text-decoration: none; font-size: .88rem; font-weight: 500;
     transition: color .2s; position: relative;
+    white-space: nowrap;
   }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
@@ -96,7 +128,6 @@
     background: linear-gradient(160deg, #F0F7FF 0%, #E0EEFF 40%, #CCE0FF 100%);
   }
 
-  /* decorative grid */
   #home::before {
     content: '';
     position: absolute; inset: 0;
@@ -407,6 +438,37 @@
     transform: translateY(-5px); box-shadow: var(--shadow-blue);
   }
 
+  .logo-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .logo-track {
+      display: flex;
+      width: max-content;
+      gap: 40px;
+
+      animation: scroll 50s linear infinite;
+  }
+
+  .logo-track img {
+      width: 140px;
+      height: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+      from {
+          transform: translateX(0);
+      }
+      to {
+          transform: translateX(-100%);
+      }
+  }
+
   /* ─── REVIEWS ─── */
   #reviews { background: var(--navy); position: relative; overflow: hidden; }
   #reviews::before {
@@ -551,6 +613,7 @@
     border-radius: 28px; padding: 52px 44px;
     box-shadow: 0 24px 64px rgba(11,31,58,.25);
     position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
   }
   .contact-cta::before {
     content: ''; position: absolute; top: -100px; right: -100px;
@@ -589,7 +652,6 @@
     display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr;
     gap: 3rem; margin-bottom: 3rem;
   }
-  .footer-brand { }
   .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; text-decoration: none; }
   .footer-logo-icon {
     width: 36px; height: 36px;
@@ -620,18 +682,21 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: .78rem; }
+  }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .stats-row { grid-template-columns: repeat(2,1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
   }
   @media (max-width: 768px) {
     .slide { flex-direction: column; justify-content: center; text-align: center; padding-top: 3rem; }
     .slide-img { width: 75%; margin: 2rem auto 0; }
     .hero-orb { width: 260px; height: 260px; font-size: 5rem; }
     nav { padding: 0 4vw; }
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: .78rem; }
     .review-slide { flex-direction: column; }
     .review-video { flex: none; width: 100%; }
     .footer-grid { grid-template-columns: 1fr; }
@@ -646,18 +711,25 @@
     <div class="logo-icon">⚡</div>
     <div class="logo-text">
       <div class="logo-name">Justin Jaya Store</div>
-      <div class="logo-sub">Smart Gadget & Accessories</div>
+      <div class="logo-sub" data-id="Gadget Pintar & Aksesoris" data-en="Smart Gadget & Accessories">Gadget Pintar & Aksesoris</div>
     </div>
   </a>
+
+  <!-- Language Switcher -->
+  
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#products">Product</a></li>
-    <li><a href="#partners">Partners</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    <li><a href="#home" data-id="Beranda" data-en="Home">Beranda</a></li>
+    <li><a href="#about" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a></li>
+    <li><a href="#products" data-id="Produk" data-en="Products">Produk</a></li>
+    <li><a href="#partners" data-id="Mitra" data-en="Partners">Mitra</a></li>
+    <li><a href="#reviews" data-id="Ulasan" data-en="Reviews">Ulasan</a></li>
+    <li><a href="#faq" data-id="FAQ" data-en="FAQ">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta" data-id="Hubungi Kami" data-en="Contact Us">Hubungi Kami</a></li>
   </ul>
+  <div class="lang-switch">
+    <button onclick="switchLanguage('id')" class="lang-btn active" id="btn-id">🇮🇩 ID</button>
+    <button onclick="switchLanguage('en')" class="lang-btn" id="btn-en">🇬🇧 EN</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -667,46 +739,37 @@
 
     <div class="slide">
       <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span>New Launch</div>
-        <h1>Your Healthy<br><span>Lifestyle Coach</span></h1>
-        <p>Monitor your health, stay active, and look great — all with our premium Smartwatch collection.</p>
-        <a href="#products" class="btn-primary">Explore Products <span class="arrow">→</span></a>
+        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Peluncuran Baru" data-en="New Launch">Peluncuran Baru</span></div>
+        <h1><span data-id="Pelatih Gaya Hidup Sehat" data-en="Your Healthy Lifestyle">Pelatih Gaya Hidup Sehat</span><br><span class="gradient-text" data-id="Anda" data-en="Coach">Anda</span></h1>
+        <p data-id="Pantau kesehatan Anda, tetap aktif, dan tampil keren — semuanya dengan koleksi Smartwatch premium kami." data-en="Monitor your health, stay active, and look great — all with our premium Smartwatch collection.">Pantau kesehatan Anda, tetap aktif, dan tampil keren — semuanya dengan koleksi Smartwatch premium kami.</p>
+        <a href="#products" class="btn-primary"><span data-id="Jelajahi Produk" data-en="Explore Products">Jelajahi Produk</span> <span class="arrow">→</span></a>
       </div>
       <div class="slide-img">
-        <div class="hero-orb">
-          <div class="hero-orb-inner"></div>
-          ⌚
-        </div>
+        <div class="hero-orb"><div class="hero-orb-inner"></div>⌚</div>
       </div>
     </div>
 
     <div class="slide">
       <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span>Best Seller</div>
-        <h1>Immersive<br><span>Sound Quality</span></h1>
-        <p>TWS earbuds engineered for crystal-clear audio and all-day comfort. Built for your world.</p>
-        <a href="#products" class="btn-primary">Shop Now <span class="arrow">→</span></a>
+        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Terlaris" data-en="Best Seller">Terlaris</span></div>
+        <h1><span data-id="Kualitas Suara" data-en="Immersive Sound">Kualitas Suara</span><br><span class="gradient-text" data-id="Imersif" data-en="Quality">Imersif</span></h1>
+        <p data-id="Earbuds TWS yang dirancang untuk audio jernih kristal dan kenyamanan sepanjang hari. Dibuat untuk dunia Anda." data-en="TWS earbuds engineered for crystal-clear audio and all-day comfort. Built for your world.">Earbuds TWS yang dirancang untuk audio jernih kristal dan kenyamanan sepanjang hari. Dibuat untuk dunia Anda.</p>
+        <a href="#products" class="btn-primary"><span data-id="Belanja Sekarang" data-en="Shop Now">Belanja Sekarang</span> <span class="arrow">→</span></a>
       </div>
       <div class="slide-img">
-        <div class="hero-orb" style="background:linear-gradient(135deg,#1A3A6B,#60A5FA)">
-          <div class="hero-orb-inner"></div>
-          🎧
-        </div>
+        <div class="hero-orb" style="background:linear-gradient(135deg,#1A3A6B,#60A5FA)"><div class="hero-orb-inner"></div>🎧</div>
       </div>
     </div>
 
     <div class="slide">
       <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span>Power Up</div>
-        <h1>Fast Charge,<br><span>Anywhere</span></h1>
-        <p>Compact yet powerful — our power banks keep your devices running all day long.</p>
-        <a href="#products" class="btn-primary">View Collection <span class="arrow">→</span></a>
+        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Isi Daya Cepat" data-en="Power Up">Isi Daya Cepat</span></div>
+        <h1><span data-id="Isi Daya Cepat," data-en="Fast Charge,">Isi Daya Cepat,</span><br><span class="gradient-text" data-id="Di Mana Saja" data-en="Anywhere">Di Mana Saja</span></h1>
+        <p data-id="Kompak namun powerful — power bank kami menjaga perangkat Anda tetap menyala sepanjang hari." data-en="Compact yet powerful — our power banks keep your devices running all day long.">Kompak namun powerful — power bank kami menjaga perangkat Anda tetap menyala sepanjang hari.</p>
+        <a href="#products" class="btn-primary"><span data-id="Lihat Koleksi" data-en="View Collection">Lihat Koleksi</span> <span class="arrow">→</span></a>
       </div>
       <div class="slide-img">
-        <div class="hero-orb" style="background:linear-gradient(135deg,#0B2F5E,#1B6EF3)">
-          <div class="hero-orb-inner"></div>
-          🔋
-        </div>
+        <div class="hero-orb" style="background:linear-gradient(135deg,#0B2F5E,#1B6EF3)"><div class="hero-orb-inner"></div>🔋</div>
       </div>
     </div>
 
@@ -718,28 +781,31 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label reveal">Who We Are</div>
-  <div class="section-title reveal">Discover <span>Justin Jaya Store</span><br>World of Smart Gadget</div>
-  <div class="section-sub reveal">Where technology meets everyday life — crafted with precision, designed for your lifestyle.</div>
+  <div class="section-label reveal" data-id="Siapa Kami" data-en="Who We Are">Siapa Kami</div>
+  <h2 class="section-title reveal">
+    <span data-id="Jelajahi " data-en="Discover ">Jelajahi </span><span class="gradient-text">Justin Jaya Store</span><br>
+    <span data-id="Dunia Gadget Pintar" data-en="World of Smart Gadget">Dunia Gadget Pintar</span>
+  </h2>
+  <div class="section-sub reveal" data-id="Di mana teknologi bertemu kehidupan sehari-hari — dibuat dengan presisi, dirancang untuk gaya hidup Anda." data-en="Where technology meets everyday life — crafted with precision, designed for your lifestyle.">Di mana teknologi bertemu kehidupan sehari-hari — dibuat dengan presisi, dirancang untuk gaya hidup Anda.</div>
 
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>Born in Indonesia, Justin Jaya Store creates high-quality smartphone accessories and connected devices that fit effortlessly into daily life. TWS and smartwatches for on-the-go moments, powerful yet compact speakers, precision cables, and dependable fast-charging power solutions.</p>
-      <p>Each product is shaped by a disciplined design process and rigorous quality control, backed by a strong R&D organization and a state-of-the-art manufacturing facility in Shenzhen with a workforce of 1,000+ people.</p>
-      <p>We also pioneered Indonesia's smart cutting-machine category, enabling accurate, on-the-spot film application for hundreds of designs across smartphones through our Baseus distribution partnership.</p>
-      <a href="#" class="btn-outline">Learn More About Us →</a>
+      <p data-id="Lahir di Indonesia, Justin Jaya Store menciptakan aksesoris smartphone dan perangkat terhubung berkualitas tinggi yang mudah menyatu dengan kehidupan sehari-hari." data-en="Born in Indonesia, Justin Jaya Store creates high-quality smartphone accessories and connected devices that fit effortlessly into daily life.">Lahir di Indonesia, Justin Jaya Store menciptakan aksesoris smartphone dan perangkat terhubung berkualitas tinggi yang mudah menyatu dengan kehidupan sehari-hari.</p>
+      <p data-id="Setiap produk dibentuk melalui proses desain yang disiplin dan pengendalian kualitas ketat, didukung oleh organisasi R&amp;D yang kuat serta fasilitas manufaktur canggih di Shenzhen dengan lebih dari 1.000 tenaga kerja." data-en="Each product is shaped by a disciplined design process and rigorous quality control, backed by a strong R&amp;D organization and a state-of-the-art manufacturing facility in Shenzhen with a workforce of 1,000+ people.">Setiap produk dibentuk melalui proses desain yang disiplin dan pengendalian kualitas ketat, didukung oleh organisasi R&amp;D yang kuat serta fasilitas manufaktur canggih di Shenzhen dengan lebih dari 1.000 tenaga kerja.</p>
+      <p data-id="Kami juga mempelopori kategori mesin cutting film pintar di Indonesia melalui kemitraan distribusi Baseus." data-en="We also pioneered Indonesia's smart cutting-machine category through our Baseus distribution partnership.">Kami juga mempelopori kategori mesin cutting film pintar di Indonesia melalui kemitraan distribusi Baseus.</p>
+      <a href="#" class="btn-outline" data-id="Pelajari Lebih Lanjut Tentang Kami →" data-en="Learn More About Us →">Pelajari Lebih Lanjut Tentang Kami →</a>
     </div>
     <div class="about-visuals reveal">
       <div class="about-card" style="text-align:center;padding:36px;">
         <div style="font-size:3rem;margin-bottom:14px">🏭</div>
         <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;color:var(--sky)">10,000,000+</div>
-        <div class="stat-label" style="font-size:.85rem;margin-top:6px">Brand Shipments Reached</div>
+        <div class="stat-label" style="font-size:.85rem;margin-top:6px" data-id="Pengiriman Brand Tercapai" data-en="Brand Shipments Reached">Pengiriman Brand Tercapai</div>
       </div>
       <div class="about-card award">
         <div class="award-badge">🏆</div>
         <div>
-          <div class="award-title">Selular Award 2025</div>
-          <div class="award-sub">Winner — Best Accessories Brand</div>
+          <div class="award-title" data-id="Selular Award 2025" data-en="Selular Award 2025">Selular Award 2025</div>
+          <div class="award-sub" data-id="Pemenang — Brand Aksesoris Terbaik" data-en="Winner — Best Accessories Brand">Pemenang — Brand Aksesoris Terbaik</div>
         </div>
       </div>
     </div>
@@ -748,23 +814,23 @@
   <div class="stats-row">
     <div class="stat-card reveal">
       <div class="stat-icon">📦</div>
-      <div class="stat-num">1M+</div>
-      <div class="stat-label">Brand Shipments</div>
+      <div class="stat-num" data-id="1JT++" data-en="1M+">1JT+</div>
+      <div class="stat-label" data-id="Pengiriman Brand" data-en="Brand Shipments">Pengiriman Brand</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon">👥</div>
       <div class="stat-num">1000+</div>
-      <div class="stat-label">Team Members</div>
+      <div class="stat-label" data-id="Produk Original" data-en="Original Product">Produk Original</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon">🏅</div>
-      <div class="stat-num">2025</div>
-      <div class="stat-label">Selular Award</div>
+      <div class="stat-num">8 Tahun</div>
+      <div class="stat-label" data-id="Telah Berdiri" data-en="Have Been Established">Telah Berdiri</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon">🥇</div>
       <div class="stat-num">#1</div>
-      <div class="stat-label">Accessories Brand</div>
+      <div class="stat-label" data-id="Toko Aksesoris Online Sumatera Selatan" data-en="South Sumatra Online Accessories Store">Toko Aksesoris Online Sumatera Selatan</div>
     </div>
   </div>
 </section>
@@ -772,9 +838,9 @@
 <!-- PRODUCTS -->
 <section id="products">
   <div class="products-head">
-    <div class="section-label reveal">Our Lineup</div>
-    <div class="section-title reveal">Explore <span>Our Products</span></div>
-    <div class="section-sub reveal">Discover our premium range of smart accessories and connected devices</div>
+    <div class="section-label reveal" data-id="Koleksi Kami" data-en="Our Lineup">Koleksi Kami</div>
+    <h2 class="section-title reveal"><span data-id="Jelajahi " data-en="Explore ">Jelajahi </span><span class="gradient-text" data-id="Produk Kami" data-en="Our Products">Produk Kami</span></h2>
+    <div class="section-sub reveal" data-id="Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami" data-en="Discover our premium range of smart accessories and connected devices">Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami</div>
     <div class="divider-line"></div>
   </div>
 
@@ -783,49 +849,49 @@
       <div class="product-card reveal">
         <div class="product-img">🎧</div>
         <div class="product-info">
-          <h3>TWS Earbuds</h3>
-          <p>Crystal-clear audio with active noise cancellation and ergonomic fit.</p>
-          <span class="product-tag">Audio</span>
+          <h3 data-id="TWS Earbuds" data-en="TWS Earbuds">TWS Earbuds</h3>
+          <p data-id="Audio jernih kristal dengan active noise cancellation dan fit ergonomis." data-en="Crystal-clear audio with active noise cancellation and ergonomic fit.">Audio jernih kristal dengan active noise cancellation dan fit ergonomis.</p>
+          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
         </div>
       </div>
       <div class="product-card reveal">
         <div class="product-img">⌚</div>
         <div class="product-info">
-          <h3>Smartwatch</h3>
-          <p>Health tracking, smart notifications, and stunning watch faces.</p>
-          <span class="product-tag">Wearable</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">🔊</div>
-        <div class="product-info">
-          <h3>Speaker</h3>
-          <p>Portable wireless speakers with 360° sound and RGB lighting.</p>
-          <span class="product-tag">Audio</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">🔌</div>
-        <div class="product-info">
-          <h3>Data Cable</h3>
-          <p>Braided nylon cables with fast-charge support up to 65W.</p>
-          <span class="product-tag">Accessories</span>
+          <h3 data-id="Smartwatch" data-en="Smartwatch">Smartwatch</h3>
+          <p data-id="Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif." data-en="Health monitoring, smart notifications, and premium design for an active lifestyle.">Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif.</p>
+          <span class="product-tag" data-id="Wearable" data-en="Wearable">Wearable</span>
         </div>
       </div>
       <div class="product-card reveal">
         <div class="product-img">🔋</div>
         <div class="product-info">
-          <h3>Power Bank</h3>
-          <p>Ultra-compact 10,000mAh power bank with dual USB-C output.</p>
-          <span class="product-tag">Power</span>
+          <h3 data-id="Power Bank" data-en="Power Bank">Power Bank</h3>
+          <p data-id="Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian." data-en="High capacity, fast charging, compact design to power your daily activities.">Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian.</p>
+          <span class="product-tag" data-id="Pengisian" data-en="Charging">Pengisian</span>
         </div>
       </div>
       <div class="product-card reveal">
-        <div class="product-img">⚡</div>
+        <div class="product-img">📱</div>
         <div class="product-info">
-          <h3>Charger Adapter</h3>
-          <p>GaN fast-charger in a slim, travel-friendly form factor.</p>
-          <span class="product-tag">Power</span>
+          <h3 data-id="Casing Premium" data-en="Premium Case">Casing Premium</h3>
+          <p data-id="Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer." data-en="Maximum protection with stylish design for all popular smartphone models.">Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer.</p>
+          <span class="product-tag" data-id="Aksesoris" data-en="Accessories">Aksesoris</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">🔌</div>
+        <div class="product-info">
+          <h3 data-id="Kabel Fast Charge" data-en="Fast Charge Cable">Kabel Fast Charge</h3>
+          <p data-id="Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi." data-en="Premium braided cable with 65W fast charging support and high durability.">Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi.</p>
+          <span class="product-tag" data-id="Kabel" data-en="Cable">Kabel</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">🎙️</div>
+        <div class="product-info">
+          <h3 data-id="Wireless Speaker" data-en="Wireless Speaker">Wireless Speaker</h3>
+          <p data-id="Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama." data-en="Rich 360° sound with deep bass, IPX5 water resistance, and long-lasting battery.">Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama.</p>
+          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
         </div>
       </div>
     </div>
@@ -840,139 +906,203 @@
 <!-- PARTNERS -->
 <section id="partners">
   <div class="partners-head">
-    <div class="section-label reveal">Trusted By</div>
-    <div class="section-title reveal">Our <span>Partners</span></div>
-    <div class="section-sub reveal">Trusted by leading brands that share our commitment to quality and innovation.</div>
+    <div class="section-label reveal" data-id="Dipercaya Oleh" data-en="Trusted By">Dipercaya Oleh</div>
+    <h2 class="section-title reveal"><span data-id="Mitra " data-en="Our ">Mitra </span><span class="gradient-text" data-id="Resmi Kami" data-en="Official Partners">Resmi Kami</span></h2>
+    <div class="section-sub reveal" data-id="Kami bangga berkolaborasi dengan brand-brand teknologi terkemuka di dunia" data-en="We're proud to collaborate with the world's leading technology brands">Kami bangga berkolaborasi dengan brand-brand teknologi terkemuka di dunia</div>
     <div class="divider-line"></div>
   </div>
-  <div class="partners-grid reveal">
-    <div class="partner-card">oppo</div>
-    <div class="partner-card">erafone</div>
-    <div class="partner-card">Gramedia</div>
+  <div class="logo-slider">
+    <div class="logo-track">
+
+      <div class="partners-grid">
+        <div class="partner-card reveal">Apple</div>
+        <div class="partner-card reveal">Samsung</div>
+        <div class="partner-card reveal">Xiaomi</div>
+        <div class="partner-card reveal">Oppo</div>
+        <div class="partner-card reveal">Vivo</div>
+        <div class="partner-card reveal">Realme</div>
+        <div class="partner-card reveal">Tecno</div>
+        <div class="partner-card reveal">Infinix</div>
+        <div class="partner-card reveal">Intel</div>
+        <div class="partner-card reveal">Soraspace</div>
+        <div class="partner-card reveal">Ugreen</div>
+        <div class="partner-card reveal">Anker</div>
+        <div class="partner-card reveal">Robot</div>
+        <div class="partner-card reveal">Vivan</div>
+        <div class="partner-card reveal">Gamen</div>
+        <div class="partner-card reveal">Acome</div>
+        <div class="partner-card reveal">Olike</div>
+        <div class="partner-card reveal">Jisulife</div>
+        <div class="partner-card reveal">Titon</div>
+        <div class="partner-card reveal">Inbox</div>
+        <div class="partner-card reveal">Kiip</div>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-card reveal">Apple</div>
+        <div class="partner-card reveal">Samsung</div>
+        <div class="partner-card reveal">Xiaomi</div>
+        <div class="partner-card reveal">Oppo</div>
+        <div class="partner-card reveal">Vivo</div>
+        <div class="partner-card reveal">Realme</div>
+        <div class="partner-card reveal">Tecno</div>
+        <div class="partner-card reveal">Infinix</div>
+        <div class="partner-card reveal">Intel</div>
+        <div class="partner-card reveal">Soraspace</div>
+        <div class="partner-card reveal">Ugreen</div>
+        <div class="partner-card reveal">Anker</div>
+        <div class="partner-card reveal">Robot</div>
+        <div class="partner-card reveal">Vivan</div>
+        <div class="partner-card reveal">Gamen</div>
+        <div class="partner-card reveal">Acome</div>
+        <div class="partner-card reveal">Olike</div>
+        <div class="partner-card reveal">Jisulife</div>
+        <div class="partner-card reveal">Titon</div>
+        <div class="partner-card reveal">Inbox</div>
+        <div class="partner-card reveal">Kiip</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="reviews-head">
-    <div class="section-label reveal">Testimonials</div>
-    <div class="section-title reveal">What They Said <span>About Us</span></div>
-    <div class="section-sub reveal">Hear what tech reviewers say about our products</div>
+    <div class="section-label reveal" data-id="Testimoni" data-en="Testimonials">Testimoni</div>
+    <h2 class="section-title reveal"><span data-id="Apa Kata " data-en="What Our ">Apa Kata </span><span class="gradient-text" data-id="Pelanggan Kami" data-en="Customers Say">Pelanggan Kami</span></h2>
+    <div class="section-sub reveal" data-id="Ribuan pelanggan puas dengan produk dan layanan Justin Jaya Store" data-en="Thousands of satisfied customers with Justin Jaya Store products and service">Ribuan pelanggan puas dengan produk dan layanan Justin Jaya Store</div>
   </div>
 
   <div class="review-slider">
     <div class="review-track" id="reviewTrack">
+
       <div class="review-slide">
         <div class="review-video">
           <div class="play-btn">▶</div>
         </div>
         <div class="review-content">
-          <div class="reviewer-avatar">🎬</div>
-          <div class="reviewer-name">DK.id</div>
+          <div class="reviewer-avatar">😊</div>
+          <div class="reviewer-name">Ahmad Fauzi</div>
           <div class="review-bar"></div>
-          <div class="review-text">"Produk dikenal menghadirkan kualitas yang melampaui ekspektasi di kelas harganya. Desainnya simple namun futuristik, nyaman digunakan sehari-hari dengan fitur yang praktis dan fungsional. Dengan harga terjangkau, tetap mampu memberikan pengalaman premium bagi penggunanya."</div>
+          <div class="review-text" data-id='"Produk TWS-nya mantap banget! Suaranya jernih, bass-nya kencang, dan baterainya awet seharian. Packing rapi, pengiriman cepat. Puas banget beli di Justin Jaya Store!"' data-en='"The TWS product is amazing! Clear sound, strong bass, and the battery lasts all day. Neat packaging, fast delivery. Very satisfied buying at Justin Jaya Store!"'>"Produk TWS-nya mantap banget! Suaranya jernih, bass-nya kencang, dan baterainya awet seharian. Packing rapi, pengiriman cepat. Puas banget beli di Justin Jaya Store!"</div>
           <div class="stars">★★★★★</div>
         </div>
       </div>
+
       <div class="review-slide">
-        <div class="review-video" style="background:rgba(27,110,243,.08)">
+        <div class="review-video">
           <div class="play-btn">▶</div>
         </div>
         <div class="review-content">
-          <div class="reviewer-avatar">📱</div>
-          <div class="reviewer-name">TechReview.id</div>
+          <div class="reviewer-avatar">🤩</div>
+          <div class="reviewer-name">Siti Rahmawati</div>
           <div class="review-bar"></div>
-          <div class="review-text">"Kualitas build-nya solid, suara jernih dan bass-nya mantap. Untuk harganya, ini adalah salah satu TWS terbaik yang pernah saya review. Benar-benar serius soal kualitas produk."</div>
+          <div class="review-text" data-id='"Smartwatch-nya keren banget, fitur lengkap dan layarnya tajam. Pengiriman super cepat dan packaging premium. Recommended banget untuk teman-teman semua!"' data-en='"The smartwatch is so cool, full features and sharp display. Super fast delivery and premium packaging. Highly recommended for everyone!"'>"Smartwatch-nya keren banget, fitur lengkap dan layarnya tajam. Pengiriman super cepat dan packaging premium. Recommended banget untuk teman-teman semua!"</div>
           <div class="stars">★★★★★</div>
         </div>
       </div>
+
       <div class="review-slide">
-        <div class="review-video" style="background:rgba(96,165,250,.08)">
+        <div class="review-video">
           <div class="play-btn">▶</div>
         </div>
         <div class="review-content">
-          <div class="reviewer-avatar">⌚</div>
-          <div class="reviewer-name">GadgetIn</div>
+          <div class="reviewer-avatar">👏</div>
+          <div class="reviewer-name">Budi Santoso</div>
           <div class="review-bar"></div>
-          <div class="review-text">"Smartwatch-nya punya fitur lengkap dengan layar yang jernih dan baterai yang tahan lama. Pastinya jadi pilihan terbaik untuk kamu yang ingin smartwatch berkualitas dengan budget terjangkau."</div>
-          <div class="stars">★★★★☆</div>
+          <div class="review-text" data-id='"Power bank-nya luar biasa! 20.000 mAh tapi ringan dan tipis. Bisa charge 3 device sekaligus. Sudah beli 2x dan selalu puas. Toko terpercaya!"' data-en='"The power bank is amazing! 20,000 mAh but light and slim. Can charge 3 devices at once. Bought twice and always satisfied. Trusted store!"'>"Power bank-nya luar biasa! 20.000 mAh tapi ringan dan tipis. Bisa charge 3 device sekaligus. Sudah beli 2x dan selalu puas. Toko terpercaya!"</div>
+          <div class="stars">★★★★★</div>
         </div>
       </div>
+
     </div>
   </div>
 
   <div class="review-slider-nav">
-    <button class="rev-btn" onclick="goRev(revCur-1)">&#8592;</button>
+    <button class="rev-btn" onclick="goRev(revCur - 1)">&#8592;</button>
     <div class="review-dots" id="reviewDots"></div>
-    <button class="rev-btn" onclick="goRev(revCur+1)">&#8594;</button>
+    <button class="rev-btn" onclick="goRev(revCur + 1)">&#8594;</button>
   </div>
 </section>
 
 <!-- FAQ -->
 <section id="faq">
   <div class="faq-head">
-    <div class="section-label reveal">Got Questions?</div>
-    <div class="section-title reveal">Frequently Asked <span>Questions</span></div>
-    <div class="divider-line" style="margin:1rem auto 0;background:linear-gradient(90deg,var(--blue),var(--sky))"></div>
+    <div class="section-label reveal" data-id="Pertanyaan Umum" data-en="Common Questions">Pertanyaan Umum</div>
+    <h2 class="section-title reveal"><span data-id="FAQ — " data-en="FAQ — ">FAQ — </span><span class="gradient-text" data-id="Yang Sering Ditanya" data-en="Frequently Asked">Yang Sering Ditanya</span></h2>
   </div>
   <div class="faq-list">
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara klaim garansi?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Kunjungi service center resmi atau hubungi CS kami via WhatsApp. Siapkan bukti pembelian dan foto produk yang bermasalah. Tim kami akan memproses klaim dalam 1–3 hari kerja.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-id="Apakah produk Justin Jaya Store bergaransi resmi?" data-en="Do Justin Jaya Store products come with official warranty?">Apakah produk Justin Jaya Store bergaransi resmi?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-id="Ya, seluruh produk Justin Jaya Store dilengkapi garansi resmi antara 6–12 bulan tergantung jenis produknya. Garansi mencakup kerusakan pabrik dan cacat produksi." data-en="Yes, all Justin Jaya Store products come with official warranty between 6–12 months depending on the product type. Warranty covers factory defects and manufacturing flaws.">Ya, seluruh produk Justin Jaya Store dilengkapi garansi resmi antara 6–12 bulan tergantung jenis produknya. Garansi mencakup kerusakan pabrik dan cacat produksi.</div>
     </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Berapa lama masa garansi produk?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Masa garansi bervariasi tergantung kategori produk: TWS & Smartwatch 6 bulan, Speaker & Power Bank 6 bulan, dan Data Cable 3 bulan dari tanggal pembelian.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-id="Berapa lama waktu pengiriman ke seluruh Indonesia?" data-en="How long is the delivery time across Indonesia?">Berapa lama waktu pengiriman ke seluruh Indonesia?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-id="Pengiriman ke Jawa dan Sumatra umumnya 1–3 hari kerja. Untuk wilayah luar Jawa seperti Kalimantan, Sulawesi, dan Papua bisa memakan waktu 3–7 hari kerja." data-en="Delivery to Java and Sumatra is generally 1–3 business days. For areas outside Java like Kalimantan, Sulawesi, and Papua it may take 3–7 business days.">Pengiriman ke Jawa dan Sumatra umumnya 1–3 hari kerja. Untuk wilayah luar Jawa seperti Kalimantan, Sulawesi, dan Papua bisa memakan waktu 3–7 hari kerja.</div>
     </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Di mana bisa membeli produk secara resmi?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Produk tersedia di Shopee Official Store, Lazada Official Store, Tokopedia Official Store, TikTok Shop, serta mitra retail seperti Erafone dan Gramedia.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-id="Apakah bisa melakukan retur atau penukaran produk?" data-en="Can I return or exchange products?">Apakah bisa melakukan retur atau penukaran produk?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-id="Tentu! Kami menerima retur dan penukaran produk dalam 7 hari sejak produk diterima, dengan syarat produk masih dalam kondisi original, belum digunakan, dan beserta kelengkapannya." data-en="Absolutely! We accept returns and exchanges within 7 days of receiving the product, provided the product is still in original condition, unused, and with all accessories.">Tentu! Kami menerima retur dan penukaran produk dalam 7 hari sejak produk diterima, dengan syarat produk masih dalam kondisi original, belum digunakan, dan beserta kelengkapannya.</div>
     </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Apakah produk kompatibel dengan semua merek smartphone?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Ya, sebagian besar produk kompatibel dengan Android dan iOS. Cek spesifikasi detail di halaman produk masing-masing untuk informasi kompatibilitas lengkap.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-id="Di mana saja produk Justin Jaya Store bisa dibeli?" data-en="Where can I buy Justin Jaya Store products?">Di mana saja produk Justin Jaya Store bisa dibeli?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-id="Produk kami tersedia di Tokopedia, Shopee, Lazada, dan di toko fisik kami di Palembang, Sumatera Selatan. Anda juga bisa memesan langsung melalui WhatsApp kami." data-en="Our products are available on Tokopedia, Shopee, Lazada, and at our physical store in Palembang, South Sumatra. You can also order directly via our WhatsApp.">Produk kami tersedia di Tokopedia, Shopee, Lazada, dan di toko fisik kami di Palembang, Sumatera Selatan. Anda juga bisa memesan langsung melalui WhatsApp kami.</div>
     </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara memastikan produk yang dibeli adalah asli?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Beli hanya dari toko resmi di marketplace atau retailer mitra. Produk asli memiliki hologram garansi dan kode verifikasi pada kemasan.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-id="Apakah tersedia program reseller atau dropshipper?" data-en="Is there a reseller or dropshipper program?">Apakah tersedia program reseller atau dropshipper?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-id="Ya, kami membuka program reseller dan dropshipper dengan harga spesial. Hubungi kami melalui WhatsApp untuk informasi lebih lanjut tentang syarat dan keuntungannya." data-en="Yes, we have a reseller and dropshipper program with special pricing. Contact us via WhatsApp for more information about terms and benefits.">Ya, kami membuka program reseller dan dropshipper dengan harga spesial. Hubungi kami melalui WhatsApp untuk informasi lebih lanjut tentang syarat dan keuntungannya.</div>
     </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Apa yang tidak termasuk dalam garansi?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Kerusakan akibat kelalaian pengguna (terjatuh, terkena air di luar spek), modifikasi produk, dan kerusakan akibat bencana alam tidak termasuk dalam cakupan garansi.</div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara mengetahui promo terbaru?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Follow akun resmi kami di Instagram, TikTok, YouTube, dan Facebook untuk mendapatkan info promo, giveaway, dan konten terbaru setiap harinya.</div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q" onclick="toggleFaq(this)">Setelah klaim garansi, produk masih rusak. Apa yang harus dilakukan?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Hubungi kembali CS kami via WhatsApp dengan menyertakan nomor tiket klaim sebelumnya. Kami akan eskalasi kasusmu ke tim QC untuk penanganan lebih lanjut.</div>
-    </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-head">
-    <div class="section-label reveal">Get In Touch</div>
-    <div class="section-title reveal">Stay Connected <span>dengan Kami!</span></div>
-    <div class="section-sub reveal" style="margin:.8rem auto 0;text-align:center">Follow semua akun resmi kami untuk update terbaru, giveaway menarik, dan konten inspiratif setiap hari</div>
+    <div class="section-label reveal" data-id="Hubungi Kami" data-en="Contact Us">Hubungi Kami</div>
+    <h2 class="section-title reveal"><span data-id="Terhubung Dengan " data-en="Connect With ">Terhubung Dengan </span><span class="gradient-text" data-id="Kami" data-en="Us">Kami</span></h2>
+    <div class="section-sub reveal" data-id="Temukan kami di berbagai platform atau hubungi langsung melalui WhatsApp" data-en="Find us on various platforms or contact us directly via WhatsApp">Temukan kami di berbagai platform atau hubungi langsung melalui WhatsApp</div>
   </div>
 
-  <div class="social-grid reveal">
-    <a class="social-card" href="#">
-      <span class="social-icon">📘</span>
-      <span class="social-name">Facebook</span>
+  <div class="social-grid">
+    <a href="#" class="social-card reveal">
+      <span class="social-icon">🛍️</span>
+      <span class="social-name">Tokopedia</span>
     </a>
-    <a class="social-card" href="#">
+    <a href="#" class="social-card reveal">
+      <span class="social-icon">🛒</span>
+      <span class="social-name">Shopee</span>
+    </a>
+    <a href="#" class="social-card reveal">
+      <span class="social-icon">📦</span>
+      <span class="social-name">Lazada</span>
+    </a>
+    <a href="#" class="social-card reveal">
       <span class="social-icon">📸</span>
       <span class="social-name">Instagram</span>
     </a>
-    <a class="social-card" href="#">
-      <span class="social-icon">▶️</span>
-      <span class="social-name">YouTube</span>
-    </a>
-    <a class="social-card" href="#">
+    <a href="#" class="social-card reveal">
       <span class="social-icon">🎵</span>
       <span class="social-name">TikTok</span>
     </a>
@@ -980,10 +1110,12 @@
 
   <div class="contact-cta reveal">
     <div class="cta-icon">💬</div>
-    <h2>Butuh Bantuan?<br><span>Hubungi Kami</span></h2>
-    <p>Tim kami siap membantu menjawab pertanyaan seputar produk, garansi, dan pemesanan. Klik tombol di bawah untuk langsung terhubung ke Customer Service.</p>
-    <a href="https://wa.me/628229999669" class="wa-btn">📱 Chat di WhatsApp</a>
-    <div class="cs-num">Customer Service: 0822-9999-9669</div>
+    <h2><span data-id="Chat Langsung di " data-en="Chat Directly on ">Chat Langsung di </span><span data-id="WhatsApp" data-en="WhatsApp">WhatsApp</span></h2>
+    <p data-id="Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu." data-en="Have questions about products, orders, or partnerships? Our team is ready to help you 7 days a week.">Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu.</p>
+    <a href="https://wa.me/6282299999669" class="wa-btn" target="_blank">
+      <span>💬</span> <span data-id="Hubungi via WhatsApp" data-en="Contact via WhatsApp">Hubungi via WhatsApp</span>
+    </a>
+    <div class="cs-num">0822-9999-9669</div>
   </div>
 </section>
 
@@ -995,106 +1127,179 @@
         <div class="footer-logo-icon">⚡</div>
         <div>
           <div class="footer-logo-name">Justin Jaya Store</div>
-          <div class="footer-logo-sub">Smart Gadget & Accessories</div>
+          <div class="footer-logo-sub" data-id="Gadget Pintar & Aksesoris" data-en="Smart Gadget & Accessories">Gadget Pintar & Aksesoris</div>
         </div>
       </a>
-      <p>Menghadirkan aksesoris smartphone dan perangkat pintar berkualitas premium yang dirancang untuk gaya hidup modern Indonesia.</p>
-      <div class="footer-info"><span class="footer-info-icon">📍</span> Palembang, South Sumatra, Indonesia</div>
+      <p data-id="Menghadirkan aksesoris smartphone dan perangkat pintar berkualitas premium untuk gaya hidup modern Indonesia." data-en="Delivering premium smartphone accessories and smart devices designed for modern Indonesian lifestyle.">Menghadirkan aksesoris smartphone dan perangkat pintar berkualitas premium untuk gaya hidup modern Indonesia.</p>
+      <div class="footer-info"><span class="footer-info-icon">📍</span> <span data-id="Palembang, Sumatera Selatan, Indonesia" data-en="Palembang, South Sumatra, Indonesia">Palembang, Sumatera Selatan, Indonesia</span></div>
       <div class="footer-info"><span class="footer-info-icon">📞</span> 0822-9999-9669</div>
     </div>
+
     <div class="footer-col">
-      <h4>Find Us</h4>
-      <a href="#">🛍️ Shopee</a>
-      <a href="#">❤️ Lazada</a>
-      <a href="#">🎵 TikTok Shop</a>
-      <a href="#">🟢 Tokopedia</a>
+      <h4 data-id="Navigasi" data-en="Navigation">Navigasi</h4>
+      <a href="#home" data-id="🏠 Beranda" data-en="🏠 Home">🏠 Beranda</a>
+      <a href="#about" data-id="ℹ️ Tentang Kami" data-en="ℹ️ About Us">ℹ️ Tentang Kami</a>
+      <a href="#products" data-id="📦 Produk" data-en="📦 Products">📦 Produk</a>
+      <a href="#partners" data-id="🤝 Mitra" data-en="🤝 Partners">🤝 Mitra</a>
+      <a href="#reviews" data-id="⭐ Ulasan" data-en="⭐ Reviews">⭐ Ulasan</a>
     </div>
+
     <div class="footer-col">
-      <h4>Connect With Us</h4>
-      <a href="#">📘 Facebook</a>
-      <a href="#">📸 Instagram</a>
-      <a href="#">▶️ YouTube</a>
-      <a href="#">🎵 TikTok</a>
-      <a href="#">📱 WhatsApp</a>
+      <h4 data-id="Produk" data-en="Products">Produk</h4>
+      <a href="#products">TWS Earbuds</a>
+      <a href="#products">Smartwatch</a>
+      <a href="#products">Power Bank</a>
+      <a href="#products" data-id="Casing Premium" data-en="Premium Case">Casing Premium</a>
+      <a href="#products" data-id="Kabel & Charger" data-en="Cable & Charger">Kabel & Charger</a>
     </div>
+
     <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#products">Products</a>
-      <a href="#partners">Partners</a>
-      <a href="#contact">Contact</a>
+      <h4 data-id="Layanan" data-en="Services">Layanan</h4>
+      <a href="#faq" data-id="❓ FAQ" data-en="❓ FAQ">❓ FAQ</a>
+      <a href="#contact" data-id="💬 WhatsApp" data-en="💬 WhatsApp">💬 WhatsApp</a>
+      <a href="#" data-id="🔄 Retur & Garansi" data-en="🔄 Returns & Warranty">🔄 Retur & Garansi</a>
+      <a href="#" data-id="🤝 Reseller" data-en="🤝 Reseller">🤝 Reseller</a>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Justin Jaya Store. All rights reserved.</div>
+  <div class="footer-bottom" data-id="© 2026 Justin Jaya Store. Hak cipta dilindungi." data-en="© 2026 Justin Jaya Store. All rights reserved.">© 2026 Justin Jaya Store. Hak cipta dilindungi.</div>
 </footer>
 
+<style>
+  /* gradient text helper */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
 <script>
+// ============================================================
+// LANGUAGE SWITCHER
+// ============================================================
+let currentLang = 'id';
+
+function switchLanguage(lang) {
+  currentLang = lang;
+
+  // Update button states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === 'btn-' + lang);
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-id]').forEach(el => {
+    const text = lang === 'en' ? el.dataset.en : el.dataset.id;
+    if (text !== undefined) el.innerHTML = text;
+  });
+
+  localStorage.setItem('preferredLang', lang);
+}
+
+// ============================================================
 // HERO CAROUSEL
+// ============================================================
 let cur = 0;
 const slidesEl = document.getElementById('slides');
-const slideCount = document.querySelectorAll('.slide').length;
+const allSlides = document.querySelectorAll('.slide');
+const slideCount = allSlides.length;
 const dotsEl = document.getElementById('dots');
 
+// Build dots
 for (let i = 0; i < slideCount; i++) {
   const d = document.createElement('div');
   d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.onclick = () => goSlide(i);
+  d.addEventListener('click', () => goSlide(i));
   dotsEl.appendChild(d);
 }
-function goSlide(n) {
-  cur = (n + slideCount) % slideCount;
-  slidesEl.style.transform = `translateX(-${cur * 100}%)`;
-  document.querySelectorAll('#dots .dot').forEach((d, i) => d.classList.toggle('active', i === cur));
-}
-function moveSlide(dir) { goSlide(cur + dir); }
-setInterval(() => moveSlide(1), 5000);
 
+function goSlide(n) {
+  cur = ((n % slideCount) + slideCount) % slideCount;
+  slidesEl.style.transform = 'translateX(-' + (cur * 100) + '%)';
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+}
+
+function moveSlide(dir) { goSlide(cur + dir); }
+
+const heroAuto = setInterval(() => moveSlide(1), 5000);
+
+// ============================================================
 // PRODUCT SCROLL
+// ============================================================
 let prodIdx = 0;
 const prodTrack = document.getElementById('prodTrack');
-const CARD_W = 287;
+const CARD_W = 287; // card width (265px) + gap (22px)
+const totalCards = prodTrack.querySelectorAll('.product-card').length;
+const maxProdIdx = Math.max(0, totalCards - 4);
+
 function scrollProd(dir) {
-  prodIdx = Math.max(0, Math.min(3, prodIdx + dir));
-  prodTrack.style.transform = `translateX(-${prodIdx * CARD_W}px)`;
+  prodIdx = Math.max(0, Math.min(maxProdIdx, prodIdx + dir));
+  prodTrack.style.transform = 'translateX(-' + (prodIdx * CARD_W) + 'px)';
 }
 
+// ============================================================
 // REVIEW SLIDER
+// ============================================================
 let revCur = 0;
 const revTrack = document.getElementById('reviewTrack');
-const revSlideCount = document.querySelectorAll('.review-slide').length;
+const revSlides = document.querySelectorAll('.review-slide');
+const revSlideCount = revSlides.length;
 const revDotsEl = document.getElementById('reviewDots');
 
+// Build review dots
 for (let i = 0; i < revSlideCount; i++) {
   const d = document.createElement('div');
   d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.style.cssText = 'background:rgba(255,255,255,.25)';
-  d.onclick = () => goRev(i);
+  d.style.background = i === 0 ? 'var(--sky)' : 'rgba(255,255,255,.25)';
+  d.addEventListener('click', () => goRev(i));
   revDotsEl.appendChild(d);
 }
+
 function goRev(n) {
-  revCur = (n + revSlideCount) % revSlideCount;
-  revTrack.style.transform = `translateX(-${revCur * 100}%)`;
+  revCur = ((n % revSlideCount) + revSlideCount) % revSlideCount;
+  revTrack.style.transform = 'translateX(-' + (revCur * 100) + '%)';
   revDotsEl.querySelectorAll('.dot').forEach((d, i) => {
     d.classList.toggle('active', i === revCur);
     d.style.background = i === revCur ? 'var(--sky)' : 'rgba(255,255,255,.25)';
   });
 }
-setInterval(() => goRev(revCur + 1), 6500);
 
-// FAQ
+const revAuto = setInterval(() => goRev(revCur + 1), 6500);
+
+// ============================================================
+// FAQ ACCORDION
+// ============================================================
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
+  // Close all
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
   if (!isOpen) item.classList.add('open');
 }
 
+// ============================================================
 // SCROLL REVEAL
+// ============================================================
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target); // fire once
+    }
+  });
+}, { threshold: 0.12 });
+
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============================================================
+// INIT — load saved language preference
+// ============================================================
+(function init() {
+  const saved = localStorage.getItem('preferredLang') || 'id';
+  switchLanguage(saved);
+})();
 </script>
 </body>
 </html>
