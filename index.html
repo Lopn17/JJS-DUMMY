@@ -312,6 +312,134 @@
   }
   .btn-outline:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
 
+  /* ─── ABOUT MAPS ─── */
+  .about-maps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:24px;
+
+    margin-top:4rem;
+    margin-bottom:5rem;
+
+    position:relative;
+    z-index:1;
+  }
+
+  .map-card{
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    transition:.3s;
+  }
+
+  .map-card:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(27,110,243,.4);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.2);
+  }
+
+  .map-head{
+    padding:24px;
+
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:flex-start;
+  }
+
+  .map-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    background:rgba(27,110,243,.12);
+
+    border:1px solid rgba(27,110,243,.2);
+
+    color:var(--sky);
+
+    padding:6px 12px;
+
+    border-radius:100px;
+
+    font-size:.7rem;
+    font-weight:700;
+
+    margin-bottom:14px;
+
+    text-transform:uppercase;
+    letter-spacing:.8px;
+  }
+
+  .map-head h3{
+    color:#fff;
+
+    font-family:'Outfit',sans-serif;
+    font-size:1.3rem;
+
+    margin-bottom:10px;
+  }
+
+  .map-head p{
+    color:rgba(255,255,255,.55);
+
+    line-height:1.7;
+    font-size:.9rem;
+
+    max-width:420px;
+  }
+
+  .map-link{
+    flex-shrink:0;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    background:var(--blue);
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:.82rem;
+    font-weight:700;
+
+    transition:.2s;
+  }
+
+  .map-link:hover{
+    background:#1558d4;
+
+    transform:translateY(-2px);
+  }
+
+  .map-card iframe{
+    width:100%;
+    height:450px;
+
+    border:none;
+
+    filter:grayscale(.1) contrast(1.05);
+  }
+
+  @media(max-width:900px){
+
+    .about-maps{
+      grid-template-columns:1fr;
+    }
+
+  }
+
   .about-visuals { display: flex; flex-direction: column; gap: 16px; }
   .about-card {
     background: rgba(255,255,255,.05);
@@ -404,20 +532,180 @@
     border-radius: 100px; text-transform: uppercase; letter-spacing: .7px;
   }
 
-  .prod-nav { display: flex; justify-content: center; gap: 12px; margin-top: 2.5rem; }
   .prod-btn {
+    position: absolute; top: 58%;
     width: 46px; height: 46px; border-radius: 50%;
-    background: var(--blue); color: #fff;
-    border: none; cursor: pointer; font-size: 1rem;
-    display: flex; align-items: center; justify-content: center;
-    transition: all .2s; box-shadow: var(--shadow-blue);
+    background: var(--white); border: 1.5px solid var(--border);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(27,110,243,.12);
+    font-size: 1rem; color: var(--blue);
+    z-index: 10; transition: all .2s;
   }
-  .prod-btn:hover { background: #1558d4; transform: scale(1.1); }
-  .prod-btn.outline {
-    background: var(--white); color: var(--blue);
-    border: 1.5px solid var(--border); box-shadow: none;
-  }
+  .prod-btn:hover { background: #1558d4; color: var(--white);}
+  .prod-btn.prev { left: 8rem; }
+  .prod-btn.next { right: 8rem; }
   .prod-btn.outline:hover { background: var(--pale); box-shadow: none; transform: scale(1.05); }
+
+  /* ─── SERVICES ─── */
+  #services{
+    background: var(--navy);
+    position: relative;
+  }
+
+  #services::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1px;
+
+    background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(27,110,243,.4),
+      transparent
+    );
+  }
+
+  .services-head{
+    text-align:center;
+    margin-bottom:4rem;
+  }
+
+  .services-head .section-label{
+    justify-content:center;
+    color:var(--sky);
+  }
+
+  .services-head .section-label::before{
+    background:var(--sky);
+  }
+
+  .services-head .section-title{
+    color:var(--white);
+  }
+
+  .services-head .section-sub{
+    color:rgba(255,255,255,.55);
+    margin:.8rem auto 0;
+    text-align:center;
+  }
+
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+
+  .service-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+    overflow:hidden;
+
+    transition:.3s;
+  }
+
+  .service-card:hover{
+    transform:translateY(-10px);
+
+    border-color:rgba(27,110,243,.4);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.2);
+  }
+
+  .service-image{
+    height:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:4rem;
+
+    background:
+    linear-gradient(
+      135deg,
+      var(--pale),
+      var(--pale2)
+    );
+  }
+
+  .service-content{
+    padding:24px;
+  }
+
+  .service-badge{
+    display:inline-block;
+
+    background:rgba(27,110,243,.12);
+    color:var(--sky);
+
+    border:1px solid rgba(27,110,243,.2);
+
+    padding:5px 12px;
+    border-radius:100px;
+
+    font-size:.7rem;
+    font-weight:700;
+
+    margin-bottom:16px;
+
+    text-transform:uppercase;
+    letter-spacing:.8px;
+  }
+
+  .service-card h3{
+    font-family:'Outfit',sans-serif;
+    font-size:1.3rem;
+    color:#fff;
+
+    margin-bottom:10px;
+  }
+
+  .service-card p{
+    color:rgba(255,255,255,.58);
+
+    line-height:1.7;
+    font-size:.9rem;
+
+    margin-bottom:18px;
+  }
+
+  .service-list{
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .service-list li{
+    color:rgba(255,255,255,.72);
+    font-size:.85rem;
+
+    background:rgba(255,255,255,.03);
+
+    border-radius:10px;
+
+    padding:10px 12px;
+  }
+
+  @media(max-width:1100px){
+    .services-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  @media(max-width:700px){
+    .services-grid{
+      grid-template-columns:1fr;
+    }
+  }
 
   /* ─── PARTNERS ─── */
   #partners { background: var(--navy); text-align: center; position: relative; }
@@ -824,11 +1112,67 @@
     </div>
   </div>
 
+  <div class="about-maps reveal">
+    <div class="map-card">
+      <div class="map-head">
+        <div>
+          <div class="map-badge" data-id="📍Toko Utama" data-en="📍Main Store">📍 Main Store</div>
+          <h3>14 Ilir Store</h3>
+          <p>
+            Jl. Segaran, 14 Ilir, Kec. Ilir Tim. I, Kota Palembang,
+            Sumatera Selatan 30111
+          </p>
+        </div>
+
+        <a href="https://maps.app.goo.gl/fnj8eN2ncWYX2i6t6"
+          target="_blank"
+          class="map-link">
+          Open Maps →
+        </a>
+      </div>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!4v1779349494293!6m8!1m7!1svkNb88syjCXxp958PHjLtA!2m2!1d-2.981944138962293!2d104.7646924813119!3f327.60676251014377!4f6.789612467001518!5f0.7820865974627469" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="map-card">
+      <div class="map-head">
+        <div>
+          <div class="map-badge" data-id="📍 Toko Cabang" data-en="📍 Branch Store">📍 Branch Store</div>
+          <h3>KM 9 Store</h3>
+          <p>
+            Jl. Pengadilan Tinggi No.Km.9, Karya Baru,
+            Kec. Alang-Alang Lebar, Kota Palembang,
+            Sumatera Selatan 30961
+          </p>
+        </div>
+
+        <a href="https://maps.app.goo.gl/pz9J19NWVd84Zdq87"
+          target="_blank"
+          class="map-link">
+          Open Maps →
+        </a>
+      </div>
+
+  <iframe src="https://www.google.com/maps/embed?pb=!4v1779349865854!6m8!1m7!1sdsidJx3lDsXxH6lw6fB_qA!2m2!1d-2.926738614014873!2d104.7147233575237!3f233.61487935125004!4f9.243552345539413!5f2.1653217746317286"
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+    </div>
+
+  </div>
+
   <div class="stats-row">
     <div class="stat-card reveal">
       <div class="stat-icon">📦</div>
-      <div class="stat-num" data-id="1JT++" data-en="1M+">1JT+</div>
-      <div class="stat-label" data-id="Pengiriman Brand" data-en="Brand Shipments">Pengiriman Brand</div>
+      <div class="stat-num">1.000.000+</div>
+      <div class="stat-label" data-id="Pengiriman Seluruh Indonesia" data-en="Shipping throughout Indonesia">Pengiriman Seluruh Indonesia</div>
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon">👥</div>
@@ -837,7 +1181,7 @@
     </div>
     <div class="stat-card reveal">
       <div class="stat-icon">🏅</div>
-      <div class="stat-num">8 Tahun</div>
+      <div class="stat-num" data-id="8 Tahun" data-en="8 Years">8 Tahun</div>
       <div class="stat-label" data-id="Telah Berdiri" data-en="Have Been Established">Telah Berdiri</div>
     </div>
     <div class="stat-card reveal">
@@ -909,10 +1253,110 @@
       </div>
     </div>
   </div>
+  <button class="prod-btn prev" onclick="scrollProd(-1)">&#8592;</button>
+  <button class="prod-btn next" onclick="scrollProd(1)">&#8594;</button>
+</section>
 
-  <div class="prod-nav">
-    <button class="prod-btn outline" onclick="scrollProd(-1)">&#8592;</button>
-    <button class="prod-btn" onclick="scrollProd(1)">&#8594;</button>
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-head">
+    <div class="section-label reveal">Layanan Kami</div>
+    <h2 class="section-title reveal">
+      <span class="gradient-text">Solusi Lengkap</span><br>
+      Gadget & Handphone
+    </h2>
+    <div class="section-sub reveal">
+      Tidak hanya menjual aksesoris premium, kami juga menyediakan berbagai layanan handphone profesional untuk kebutuhan personal maupun bisnis.
+    </div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-image">📱</div>
+
+      <div class="service-content">
+        <div class="service-badge">Layanan</div>
+
+        <h3>Jual & Beli HP Second</h3>
+
+        <p>
+          Menyediakan handphone second berkualitas dengan kondisi terjamin dan harga terbaik.
+        </p>
+
+        <ul class="service-list">
+          <li>✔ Garansi toko</li>
+          <li>✔ Unit sudah dicek</li>
+          <li>✔ Banyak pilihan brand</li>
+          <li>✔ Harga kompetitif</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-image">🔄</div>
+
+      <div class="service-content">
+        <div class="service-badge">Layanan</div>
+
+        <h3>Tukar Tambah Handphone</h3>
+
+        <p>
+          Upgrade handphone lama Anda dengan proses tukar tambah yang cepat dan mudah.
+        </p>
+
+        <ul class="service-list">
+          <li>✔ Penilaian harga transparan</li>
+          <li>✔ Bisa tambah unit baru</li>
+          <li>✔ Proses cepat</li>
+          <li>✔ Semua brand diterima</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-image">🛠️</div>
+
+      <div class="service-content">
+        <div class="service-badge">Layanan</div>
+
+        <h3>Service Handphone</h3>
+
+        <p>
+          Teknisi berpengalaman untuk berbagai kerusakan software maupun hardware.
+        </p>
+
+        <ul class="service-list">
+          <li>✔ Ganti LCD & baterai</li>
+          <li>✔ Perbaikan charging</li>
+          <li>✔ Software & unlock</li>
+          <li>✔ Bisa ditunggu</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-image">🏢</div>
+
+      <div class="service-content">
+        <div class="service-badge">Business</div>
+
+        <h3>B2B Project</h3>
+
+        <p>
+          Mendukung kebutuhan corporate, sekolah, instansi, dan project skala besar.
+        </p>
+
+        <ul class="service-list">
+          <li>✔ Pengadaan gadget</li>
+          <li>✔ Harga grosir</li>
+          <li>✔ Support project</li>
+          <li>✔ Kerja sama jangka panjang</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1147,10 +1591,10 @@
     <div class="cta-icon">💬</div>
     <h2><span data-id="Chat Langsung di " data-en="Chat Directly on ">Chat Langsung di </span><span data-id="WhatsApp" data-en="WhatsApp">WhatsApp</span></h2>
     <p data-id="Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu." data-en="Have questions about products, orders, or partnerships? Our team is ready to help you 7 days a week.">Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu.</p>
-    <a href="https://wa.me/6282299999669" class="wa-btn" target="_blank">
+    <a href="https://api.whatsapp.com/send/?phone=6281288807388" class="wa-btn" target="_blank">
       <span>💬</span> <span data-id="Hubungi via WhatsApp" data-en="Contact via WhatsApp">Hubungi via WhatsApp</span>
     </a>
-    <div class="cs-num">0822-9999-9669</div>
+    <div class="cs-num">0812-8880-7388</div>
   </div>
 </section>
 
