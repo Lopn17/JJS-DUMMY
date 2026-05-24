@@ -133,7 +133,7 @@
   .nav-cta:hover { background: #1558d4 !important; transform: translateY(-1px); }
   .nav-cta::after { display: none !important; }
 
-  /* ─── HERO ─── */
+/* ─── HERO ─── */
   #home {
     margin-top: var(--nav-h);
     position: relative; overflow: hidden;
@@ -158,76 +158,32 @@
     pointer-events: none; z-index: 0;
   }
 
-  .slides { display: flex; transition: transform .65s cubic-bezier(.77,0,.18,1); height: 100%; }
+  .slides { 
+    display: flex; 
+    transition: transform .65s cubic-bezier(.77,0,.18,1); 
+    height: 100%; 
+  }
+
   .slide {
     min-width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 10vw; position: relative; z-index: 1;
   }
 
-  .slide-text { max-width: 520px; }
-  .slide-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(27,110,243,.1); border: 1px solid rgba(27,110,243,.2);
-    color: var(--blue); font-size: .72rem; font-weight: 700;
-    padding: 6px 14px; border-radius: 100px; letter-spacing: 1.2px;
-    margin-bottom: 1.4rem; text-transform: uppercase;
+  .slide-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar memenuhi area slide tanpa penyok */
+    object-position: center; /* Menjaga fokus gambar tetap di tengah */
+    display: block;
   }
-  .badge-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse 1.8s ease infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
 
-  .slide-text h1 {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    font-weight: 900; line-height: 1.05; color: var(--navy);
-    margin-bottom: 1.1rem; letter-spacing: -1px;
-  }
-  .slide-text h1 span {
-    color: var(--blue);
-    background: linear-gradient(135deg, var(--blue), var(--sky));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .slide-text p { color: var(--slate); font-size: 1.05rem; line-height: 1.65; margin-bottom: 2.2rem; }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--blue); color: #fff;
-    padding: 14px 30px; border-radius: 10px;
-    font-weight: 700; font-size: .95rem; text-decoration: none;
-    transition: all .25s; box-shadow: var(--shadow-blue);
-  }
-  .btn-primary:hover { background: #1558d4; transform: translateY(-3px); box-shadow: 0 10px 32px rgba(27,110,243,.35); }
-  .btn-primary .arrow { transition: transform .2s; }
-  .btn-primary:hover .arrow { transform: translateX(4px); }
-
-  .slide-img { position: relative; max-width: 440px; width: 42%; }
-  .hero-orb {
-    width: 380px; height: 380px;
-    background: linear-gradient(135deg, #1B6EF3 0%, #60A5FA 100%);
-    border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 7rem;
-    box-shadow: 0 32px 80px rgba(27,110,243,.28);
-    position: relative;
-    animation: morph 8s ease-in-out infinite;
-  }
-  @keyframes morph {
-    0%,100% { border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%; }
-    33% { border-radius: 60% 40% 40% 60% / 40% 60% 40% 60%; }
-    66% { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
-  }
-  .hero-orb::before {
-    content: ''; position: absolute; inset: -20px;
-    border: 2px dashed rgba(27,110,243,.25); border-radius: 50%;
-    animation: spin 20s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hero-orb-inner { position: absolute; inset: -40px; border: 1px solid rgba(27,110,243,.1); border-radius: 50%; }
-
+  /* ─── CAROUSEL CONTROLS ─── */
   .carousel-controls {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     display: flex; gap: 8px; z-index: 10;
   }
+
   .dot {
     width: 8px; height: 8px; border-radius: 100px;
     background: rgba(27,110,243,.25); cursor: pointer; transition: all .3s;
@@ -246,7 +202,7 @@
   .carousel-btn:hover { background: var(--blue); color: #fff; box-shadow: var(--shadow-blue); }
   .carousel-btn.prev { left: 2rem; }
   .carousel-btn.next { right: 2rem; }
-
+  
   /* ─── SECTIONS COMMON ─── */
   section { padding: 100px 10vw; }
 
@@ -996,7 +952,6 @@
   @media (max-width: 768px) {
     .slide { flex-direction: column; justify-content: center; text-align: center; padding-top: 3rem; }
     .slide-img { width: 75%; margin: 2rem auto 0; }
-    .hero-orb { width: 260px; height: 260px; font-size: 5rem; }
     nav { padding: 0 4vw; }
     .review-slide { flex-direction: column; }
     .review-video { flex: none; width: 100%; }
@@ -1021,6 +976,7 @@
   <ul class="nav-links">
     <li><a href="#home" data-id="Beranda" data-en="Home">Beranda</a></li>
     <li><a href="#about" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a></li>
+    <li><a href="#services" data-id="Layanan" data-en="Services">Layanan</a></li>
     <li><a href="#products" data-id="Produk" data-en="Products">Produk</a></li>
     <li><a href="#partners" data-id="Mitra" data-en="Partners">Mitra</a></li>
     <li><a href="#reviews" data-id="Ulasan" data-en="Reviews">Ulasan</a></li>
@@ -1038,40 +994,16 @@
   <div class="hero-glow"></div>
   <div class="slides" id="slides">
 
-    <div class="slide">
-      <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Peluncuran Baru" data-en="New Launch">Peluncuran Baru</span></div>
-        <h1><span data-id="Pelatih Gaya Hidup Sehat" data-en="Your Healthy Lifestyle">Pelatih Gaya Hidup Sehat</span><br><span class="gradient-text" data-id="Anda" data-en="Coach">Anda</span></h1>
-        <p data-id="Pantau kesehatan Anda, tetap aktif, dan tampil keren — semuanya dengan koleksi Smartwatch premium kami." data-en="Monitor your health, stay active, and look great — all with our premium Smartwatch collection.">Pantau kesehatan Anda, tetap aktif, dan tampil keren — semuanya dengan koleksi Smartwatch premium kami.</p>
-        <a href="#products" class="btn-primary"><span data-id="Jelajahi Produk" data-en="Explore Products">Jelajahi Produk</span> <span class="arrow">→</span></a>
-      </div>
-      <div class="slide-img">
-        <div class="hero-orb"><div class="hero-orb-inner"></div>⌚</div>
-      </div>
+    <div class="slide" style="padding: 0; justify-content: center;">
+      <img src="assets/slide1.jpeg" alt="Hero Banner Smartwatch" class="slide-banner-img">
     </div>
 
-    <div class="slide">
-      <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Terlaris" data-en="Best Seller">Terlaris</span></div>
-        <h1><span data-id="Kualitas Suara" data-en="Immersive Sound">Kualitas Suara</span><br><span class="gradient-text" data-id="Imersif" data-en="Quality">Imersif</span></h1>
-        <p data-id="Earbuds TWS yang dirancang untuk audio jernih kristal dan kenyamanan sepanjang hari. Dibuat untuk dunia Anda." data-en="TWS earbuds engineered for crystal-clear audio and all-day comfort. Built for your world.">Earbuds TWS yang dirancang untuk audio jernih kristal dan kenyamanan sepanjang hari. Dibuat untuk dunia Anda.</p>
-        <a href="#products" class="btn-primary"><span data-id="Belanja Sekarang" data-en="Shop Now">Belanja Sekarang</span> <span class="arrow">→</span></a>
-      </div>
-      <div class="slide-img">
-        <div class="hero-orb" style="background:linear-gradient(135deg,#1A3A6B,#60A5FA)"><div class="hero-orb-inner"></div>🎧</div>
-      </div>
+    <div class="slide" style="padding: 0; justify-content: center;">
+      <img src="assets/slide2.jpeg" alt="Hero Banner Smartwatch" class="slide-banner-img">
     </div>
 
-    <div class="slide">
-      <div class="slide-text reveal">
-        <div class="slide-badge"><span class="badge-dot"></span><span data-id="Isi Daya Cepat" data-en="Power Up">Isi Daya Cepat</span></div>
-        <h1><span data-id="Isi Daya Cepat," data-en="Fast Charge,">Isi Daya Cepat,</span><br><span class="gradient-text" data-id="Di Mana Saja" data-en="Anywhere">Di Mana Saja</span></h1>
-        <p data-id="Kompak namun powerful — power bank kami menjaga perangkat Anda tetap menyala sepanjang hari." data-en="Compact yet powerful — our power banks keep your devices running all day long.">Kompak namun powerful — power bank kami menjaga perangkat Anda tetap menyala sepanjang hari.</p>
-        <a href="#products" class="btn-primary"><span data-id="Lihat Koleksi" data-en="View Collection">Lihat Koleksi</span> <span class="arrow">→</span></a>
-      </div>
-      <div class="slide-img">
-        <div class="hero-orb" style="background:linear-gradient(135deg,#0B2F5E,#1B6EF3)"><div class="hero-orb-inner"></div>🔋</div>
-      </div>
+    <div class="slide" style="padding: 0; justify-content: center;">
+      <img src="assets/slide3.jpeg" alt="Hero Banner Smartwatch" class="slide-banner-img">
     </div>
 
   </div>
@@ -1192,71 +1124,6 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="products-head">
-    <div class="section-label reveal" data-id="Koleksi Kami" data-en="Our Lineup">Koleksi Kami</div>
-    <h2 class="section-title reveal"><span data-id="Jelajahi " data-en="Explore ">Jelajahi </span><span class="gradient-text" data-id="Produk Kami" data-en="Our Products">Produk Kami</span></h2>
-    <div class="section-sub reveal" data-id="Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami" data-en="Discover our premium range of smart accessories and connected devices">Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami</div>
-    <div class="divider-line"></div>
-  </div>
-
-  <div class="products-track-wrap">
-    <div class="products-track" id="prodTrack">
-      <div class="product-card reveal">
-        <div class="product-img">🎧</div>
-        <div class="product-info">
-          <h3 data-id="TWS Earbuds" data-en="TWS Earbuds">TWS Earbuds</h3>
-          <p data-id="Audio jernih kristal dengan active noise cancellation dan fit ergonomis." data-en="Crystal-clear audio with active noise cancellation and ergonomic fit.">Audio jernih kristal dengan active noise cancellation dan fit ergonomis.</p>
-          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">⌚</div>
-        <div class="product-info">
-          <h3 data-id="Smartwatch" data-en="Smartwatch">Smartwatch</h3>
-          <p data-id="Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif." data-en="Health monitoring, smart notifications, and premium design for an active lifestyle.">Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif.</p>
-          <span class="product-tag" data-id="Wearable" data-en="Wearable">Wearable</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">🔋</div>
-        <div class="product-info">
-          <h3 data-id="Power Bank" data-en="Power Bank">Power Bank</h3>
-          <p data-id="Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian." data-en="High capacity, fast charging, compact design to power your daily activities.">Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian.</p>
-          <span class="product-tag" data-id="Pengisian" data-en="Charging">Pengisian</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">📱</div>
-        <div class="product-info">
-          <h3 data-id="Casing Premium" data-en="Premium Case">Casing Premium</h3>
-          <p data-id="Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer." data-en="Maximum protection with stylish design for all popular smartphone models.">Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer.</p>
-          <span class="product-tag" data-id="Aksesoris" data-en="Accessories">Aksesoris</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">🔌</div>
-        <div class="product-info">
-          <h3 data-id="Kabel Fast Charge" data-en="Fast Charge Cable">Kabel Fast Charge</h3>
-          <p data-id="Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi." data-en="Premium braided cable with 65W fast charging support and high durability.">Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi.</p>
-          <span class="product-tag" data-id="Kabel" data-en="Cable">Kabel</span>
-        </div>
-      </div>
-      <div class="product-card reveal">
-        <div class="product-img">🎙️</div>
-        <div class="product-info">
-          <h3 data-id="Wireless Speaker" data-en="Wireless Speaker">Wireless Speaker</h3>
-          <p data-id="Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama." data-en="Rich 360° sound with deep bass, IPX5 water resistance, and long-lasting battery.">Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama.</p>
-          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="prod-btn prev" onclick="scrollProd(-1)">&#8592;</button>
-  <button class="prod-btn next" onclick="scrollProd(1)">&#8594;</button>
-</section>
-
 <!-- SERVICES -->
 <section id="services">
   <div class="services-head">
@@ -1358,6 +1225,71 @@
     </div>
 
   </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-head">
+    <div class="section-label reveal" data-id="Koleksi Kami" data-en="Our Lineup">Koleksi Kami</div>
+    <h2 class="section-title reveal"><span data-id="Jelajahi " data-en="Explore ">Jelajahi </span><span class="gradient-text" data-id="Produk Kami" data-en="Our Products">Produk Kami</span></h2>
+    <div class="section-sub reveal" data-id="Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami" data-en="Discover our premium range of smart accessories and connected devices">Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="products-track-wrap">
+    <div class="products-track" id="prodTrack">
+      <div class="product-card reveal">
+        <div class="product-img">🎧</div>
+        <div class="product-info">
+          <h3 data-id="TWS Earbuds" data-en="TWS Earbuds">TWS Earbuds</h3>
+          <p data-id="Audio jernih kristal dengan active noise cancellation dan fit ergonomis." data-en="Crystal-clear audio with active noise cancellation and ergonomic fit.">Audio jernih kristal dengan active noise cancellation dan fit ergonomis.</p>
+          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">⌚</div>
+        <div class="product-info">
+          <h3 data-id="Smartwatch" data-en="Smartwatch">Smartwatch</h3>
+          <p data-id="Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif." data-en="Health monitoring, smart notifications, and premium design for an active lifestyle.">Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif.</p>
+          <span class="product-tag" data-id="Wearable" data-en="Wearable">Wearable</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">🔋</div>
+        <div class="product-info">
+          <h3 data-id="Power Bank" data-en="Power Bank">Power Bank</h3>
+          <p data-id="Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian." data-en="High capacity, fast charging, compact design to power your daily activities.">Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian.</p>
+          <span class="product-tag" data-id="Pengisian" data-en="Charging">Pengisian</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">📱</div>
+        <div class="product-info">
+          <h3 data-id="Casing Premium" data-en="Premium Case">Casing Premium</h3>
+          <p data-id="Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer." data-en="Maximum protection with stylish design for all popular smartphone models.">Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer.</p>
+          <span class="product-tag" data-id="Aksesoris" data-en="Accessories">Aksesoris</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">🔌</div>
+        <div class="product-info">
+          <h3 data-id="Kabel Fast Charge" data-en="Fast Charge Cable">Kabel Fast Charge</h3>
+          <p data-id="Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi." data-en="Premium braided cable with 65W fast charging support and high durability.">Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi.</p>
+          <span class="product-tag" data-id="Kabel" data-en="Cable">Kabel</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">🎙️</div>
+        <div class="product-info">
+          <h3 data-id="Wireless Speaker" data-en="Wireless Speaker">Wireless Speaker</h3>
+          <p data-id="Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama." data-en="Rich 360° sound with deep bass, IPX5 water resistance, and long-lasting battery.">Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama.</p>
+          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="prod-btn prev" onclick="scrollProd(-1)">&#8592;</button>
+  <button class="prod-btn next" onclick="scrollProd(1)">&#8594;</button>
 </section>
 
 <!-- PARTNERS -->
