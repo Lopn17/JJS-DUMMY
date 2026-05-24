@@ -450,13 +450,13 @@
   .products-head .section-title { color: var(--white); }
   .products-head .section-sub { text-align: center; color: rgba(255,255,255,.5); }
 
-  .products-track-wrap { position: relative; overflow: hidden; }
+  .products-track-wrap { position: relative; overflow: hidden; padding: 0 4%; }
   .products-track {
     display: flex; gap: 22px;
     transition: transform .5s cubic-bezier(.77,0,.18,1);
     padding: 8px 4px 16px;
   }
-/* ─── NEW MINIMALIST PRODUCTS CARD ─── */
+
   .product-card {
     min-width: 265px; 
     background: rgba(255, 255, 255, 0.04); /* Background gelap transparan seperti mockup */
@@ -511,19 +511,55 @@
     letter-spacing: 0.5px;
     margin: 0;
   }
-  .prod-btn {
-    position: absolute; top: 58%;
-    width: 46px; height: 46px; border-radius: 50%;
-    background: var(--white); border: 1.5px solid var(--border);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(27,110,243,.12);
-    font-size: 1rem; color: var(--blue);
-    z-index: 10; transition: all .2s;
+.prod-btn {
+    /* Gunakan posisi fixed-absolute terhadap section */
+    position: absolute; 
+    top: calc(55% + 40px); /* Meletakkan tepat di tengah vertikal kartu produk (dikompensasi tinggi header) */
+    transform: translateY(-50%);
+    
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    
+    /* Tema Gelap Transparan Senada dengan Card Baru */
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    
+    font-size: 1.2rem; 
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 10; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
-  .prod-btn:hover { background: #1558d4; color: var(--white);}
   .prod-btn.prev { left: 8rem; }
   .prod-btn.next { right: 8rem; }
-  .prod-btn.outline:hover { background: var(--pale); box-shadow: none; transform: scale(1.05); }
+  .prod-btn:hover { 
+    background: var(--blue, #1b6ef3); 
+    color: #fff;
+    border-color: var(--blue, #1b6ef3);
+    box-shadow: 0 0 20px rgba(27, 110, 243, 0.6);
+  }
+  /* Efek ketika diklik (Active state) */
+  .prod-btn:active {
+    transform: translateY(-50%) scale(0.92);
+  }
+
+  /* RESPONSIVE: Di layar HP/Mobile, tombol sembunyikan saja / dikecilkan agar tidak mengganggu swipe */
+  @media (max-width: 768px) {
+    .products-track-wrap {
+      padding: 0 16px;
+    }
+    .prod-btn {
+      display: none; /* Di HP user biasanya lebih nyaman langsung swipe layar */
+    }
+  }
 
   /* ─── SERVICES ─── */
   #services{
@@ -1270,6 +1306,10 @@
     <h2 class="section-title reveal"><span data-id="Jelajahi " data-en="Explore ">Jelajahi </span><span class="gradient-text" data-id="Produk Kami" data-en="Our Products">Produk Kami</span></h2>
     <div class="section-sub reveal" data-id="Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami" data-en="Discover our premium range of smart accessories and connected devices">Temukan rangkaian aksesoris pintar dan perangkat terhubung premium kami</div>
     <div class="divider-line"></div>
+    
+    <!-- Pindahkan Tombol Navigasi ke Sini -->
+    <button class="prod-btn prev" onclick="scrollProd(-1)" aria-label="Previous">&#8592;</button>
+    <button class="prod-btn next" onclick="scrollProd(1)" aria-label="Next">&#8594;</button>
   </div>
 
   <div class="products-track-wrap">
@@ -1319,8 +1359,6 @@
 
     </div>
   </div>
-  <button class="prod-btn prev" onclick="scrollProd(-1)">&#8592;</button>
-  <button class="prod-btn next" onclick="scrollProd(1)">&#8594;</button>
 </section>
 
 <!-- PARTNERS -->
