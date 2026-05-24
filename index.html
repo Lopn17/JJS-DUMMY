@@ -202,7 +202,7 @@
   .carousel-btn:hover { background: var(--blue); color: #fff; box-shadow: var(--shadow-blue); }
   .carousel-btn.prev { left: 2rem; }
   .carousel-btn.next { right: 2rem; }
-  
+
   /* ─── SECTIONS COMMON ─── */
   section { padding: 100px 10vw; }
 
@@ -456,38 +456,61 @@
     transition: transform .5s cubic-bezier(.77,0,.18,1);
     padding: 8px 4px 16px;
   }
-
+/* ─── NEW MINIMALIST PRODUCTS CARD ─── */
   .product-card {
-    min-width: 265px; background: var(--white);
-    border-radius: 22px; overflow: hidden;
-    border: 1.5px solid var(--border);
-    box-shadow: 0 4px 24px rgba(27,110,243,.06);
-    transition: transform .3s, box-shadow .3s, border-color .3s;
+    min-width: 265px; 
+    background: rgba(255, 255, 255, 0.04); /* Background gelap transparan seperti mockup */
+    border-radius: 28px; /* Lebih rounded halus */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform .3s, box-shadow .3s, border-color .3s, background .3s;
     cursor: pointer;
+    padding: 16px; /* Memberi jarak dalam/bingkai luar untuk gambar */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
-  .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 48px rgba(27,110,243,.14); border-color: rgba(27,110,243,.3); }
+
+  .product-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 20px 40px rgba(27,110,243,.2); 
+    border-color: rgba(27,110,243,.4);
+    background: rgba(255, 255, 255, 0.07);
+  }
 
   .product-img {
-    height: 200px;
-    background: linear-gradient(135deg, var(--pale), var(--pale2));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4.5rem; position: relative; overflow: hidden;
-  }
-  .product-img::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 60% 60%, rgba(27,110,243,.07) 0%, transparent 70%);
-  }
-  .product-info { padding: 22px; }
-  .product-info h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); }
-  .product-info p { font-size: .84rem; color: var(--slate); margin-top: 7px; line-height: 1.55; }
-  .product-tag {
-    display: inline-block; margin-top: 14px;
-    background: var(--pale); color: var(--blue);
-    border: 1px solid rgba(27,110,243,.15);
-    font-size: .7rem; font-weight: 700; padding: 4px 12px;
-    border-radius: 100px; text-transform: uppercase; letter-spacing: .7px;
+    height: 240px; /* Dipertinggi sedikit agar gambar terlihat megah */
+    background: rgba(0, 0, 0, 0.2); /* Background area gambar */
+    border-radius: 20px; /* Rounded khusus area gambar di dalam card */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 5rem; 
+    position: relative; 
+    overflow: hidden;
   }
 
+  /* Jika nanti kamu pakai tag <img> asli, style ini yang mengaturnya */
+  .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar akan terpotong rapi memenuhi box tanpa distorsi */
+  }
+
+  .product-info { 
+    padding: 12px 0 8px; 
+    text-align: center; /* Judul rata tengah sesuai contoh gambar */
+  }
+
+  .product-info h3 { 
+    font-family: 'Outfit', sans-serif; 
+    font-weight: 800; /* Font tebal tegap */
+    font-size: 1.3rem; 
+    color: var(--white); /* Warna teks putih cerah */
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
   .prod-btn {
     position: absolute; top: 58%;
     width: 46px; height: 46px; border-radius: 50%;
@@ -663,8 +686,8 @@
     }
   }
 
-  /* ─── PARTNERS ─── */
-  #partners { background: var(--navy); text-align: center; position: relative; }
+/* ─── PARTNERS ─── */
+  #partners { background: var(--navy); text-align: center; position: relative; padding: 60px 0; }
   #partners::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(27,110,243,.4), transparent);
@@ -674,56 +697,70 @@
   .partners-head .section-label::before { background: var(--sky); }
   .partners-head .section-title { color: var(--white); }
   .partners-head .section-sub { color: rgba(255,255,255,.5); margin: .75rem auto 0; text-align: center; }
+  
   .divider-line {
     width: 56px; height: 3px;
     background: linear-gradient(90deg, var(--blue), var(--sky));
     border-radius: 2px; margin: 1rem auto 0;
   }
-  .partners-grid {
-    display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
-    margin-top: 2rem;
+
+  /* Slider Container */
+  .logo-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+    /* Optional: Efek fade di kanan-kiri biar makin halus */
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
   }
+
+  /* Track yang menampung kedua grup */
+  .logo-track {
+    display: flex;
+    width: max-content;
+    gap: 24px; /* Samakan dengan gap antar card */
+    animation: scroll 40s linear infinite; /* Dipercepat dari 120s agar jalannya pas */
+  }
+
+  /* Kita ganti grid jadi flex row lurus */
+  .partners-group {
+    display: flex;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+
   .partner-card {
     width: 200px; height: 100px;
     background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
     border-radius: 18px; display: flex; align-items: center; justify-content: center;
     font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.3rem;
     color: rgba(255,255,255,.8); transition: all .25s;
+    flex-shrink: 0; /* Biar card-nya gak mengkerut */
   }
+
   .partner-card:hover {
     background: var(--blue); color: #fff; border-color: var(--blue);
     transform: translateY(-5px); box-shadow: var(--shadow-blue);
-  }
-
-  .logo-slider {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    padding: 20px 0;
-  }
-
-  .logo-track {
-      display: flex;
-      width: max-content;
-      gap: 40px;
-
-      animation: scroll 120s linear infinite;
+    box-shadow: ;
   }
 
   .logo-track img {
-      width: 140px;
-      height: auto;
-      object-fit: contain;
-      flex-shrink: 0;
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
+  /* KEYFRAME BARU: Geser 50% karena kita pakai trik kalkulasi gap */
   @keyframes scroll {
-      from {
-          transform: translateX(0);
-      }
-      to {
-          transform: translateX(-100%);
-      }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* Menggeser pas 1 grup (setengah dari total track + setengah dari gap utama) */
+      transform: translateX(calc(-50% - 12px)); 
+    }
   }
 
   /* ─── REVIEWS ─── */
@@ -1003,7 +1040,7 @@
     </div>
 
     <div class="slide" style="padding: 0; justify-content: center;">
-      <img src="assets/slide3.jpeg" alt="Hero Banner Smartwatch" class="slide-banner-img">
+      <img src="assets/slide3.png" alt="Hero Banner Smartwatch" class="slide-banner-img">
     </div>
 
   </div>
@@ -1238,54 +1275,49 @@
 
   <div class="products-track-wrap">
     <div class="products-track" id="prodTrack">
+      
       <div class="product-card reveal">
         <div class="product-img">🎧</div>
         <div class="product-info">
           <h3 data-id="TWS Earbuds" data-en="TWS Earbuds">TWS Earbuds</h3>
-          <p data-id="Audio jernih kristal dengan active noise cancellation dan fit ergonomis." data-en="Crystal-clear audio with active noise cancellation and ergonomic fit.">Audio jernih kristal dengan active noise cancellation dan fit ergonomis.</p>
-          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
         </div>
       </div>
+
       <div class="product-card reveal">
         <div class="product-img">⌚</div>
         <div class="product-info">
           <h3 data-id="Smartwatch" data-en="Smartwatch">Smartwatch</h3>
-          <p data-id="Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif." data-en="Health monitoring, smart notifications, and premium design for an active lifestyle.">Pantau kesehatan, notifikasi pintar, dan desain premium untuk gaya hidup aktif.</p>
-          <span class="product-tag" data-id="Wearable" data-en="Wearable">Wearable</span>
         </div>
       </div>
+
       <div class="product-card reveal">
         <div class="product-img">🔋</div>
         <div class="product-info">
           <h3 data-id="Power Bank" data-en="Power Bank">Power Bank</h3>
-          <p data-id="Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian." data-en="High capacity, fast charging, compact design to power your daily activities.">Kapasitas besar, pengisian cepat, desain ringkas untuk menemani aktivitas harian.</p>
-          <span class="product-tag" data-id="Pengisian" data-en="Charging">Pengisian</span>
         </div>
       </div>
+
       <div class="product-card reveal">
         <div class="product-img">📱</div>
         <div class="product-info">
           <h3 data-id="Casing Premium" data-en="Premium Case">Casing Premium</h3>
-          <p data-id="Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer." data-en="Maximum protection with stylish design for all popular smartphone models.">Perlindungan maksimal dengan desain stylish untuk semua model smartphone populer.</p>
-          <span class="product-tag" data-id="Aksesoris" data-en="Accessories">Aksesoris</span>
         </div>
       </div>
+
       <div class="product-card reveal">
         <div class="product-img">🔌</div>
         <div class="product-info">
           <h3 data-id="Kabel Fast Charge" data-en="Fast Charge Cable">Kabel Fast Charge</h3>
-          <p data-id="Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi." data-en="Premium braided cable with 65W fast charging support and high durability.">Kabel braided premium dengan dukungan fast charging 65W dan daya tahan tinggi.</p>
-          <span class="product-tag" data-id="Kabel" data-en="Cable">Kabel</span>
         </div>
       </div>
+
       <div class="product-card reveal">
         <div class="product-img">🎙️</div>
         <div class="product-info">
           <h3 data-id="Wireless Speaker" data-en="Wireless Speaker">Wireless Speaker</h3>
-          <p data-id="Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama." data-en="Rich 360° sound with deep bass, IPX5 water resistance, and long-lasting battery.">Suara 360° yang kaya dengan bass deep, tahan air IPX5, dan baterai tahan lama.</p>
-          <span class="product-tag" data-id="Audio" data-en="Audio">Audio</span>
         </div>
       </div>
+
     </div>
   </div>
   <button class="prod-btn prev" onclick="scrollProd(-1)">&#8592;</button>
@@ -1300,59 +1332,14 @@
     <div class="section-sub reveal" data-id="Kami bangga berkolaborasi dengan brand-brand teknologi terkemuka di dunia" data-en="We're proud to collaborate with the world's leading technology brands">Kami bangga berkolaborasi dengan brand-brand teknologi terkemuka di dunia</div>
     <div class="divider-line"></div>
   </div>
+  
   <div class="logo-slider">
     <div class="logo-track">
-
-      <div class="partners-grid">
-        <div class="partner-card reveal">Apple</div>
-        <div class="partner-card reveal">Samsung</div>
-        <div class="partner-card reveal">Xiaomi</div>
-        <div class="partner-card reveal">Oppo</div>
-        <div class="partner-card reveal">Vivo</div>
-        <div class="partner-card reveal">Realme</div>
-        <div class="partner-card reveal">Tecno</div>
-        <div class="partner-card reveal">Infinix</div>
-        <div class="partner-card reveal">Intel</div>
-        <div class="partner-card reveal">Soraspace</div>
-        <div class="partner-card reveal">Ugreen</div>
-        <div class="partner-card reveal">Anker</div>
-        <div class="partner-card reveal">Robot</div>
-        <div class="partner-card reveal">Vivan</div>
-        <div class="partner-card reveal">Gamen</div>
-        <div class="partner-card reveal">Acome</div>
-        <div class="partner-card reveal">Olike</div>
-        <div class="partner-card reveal">Jisulife</div>
-        <div class="partner-card reveal">Titon</div>
-        <div class="partner-card reveal">Inbox</div>
-        <div class="partner-card reveal">Kiip</div>
-      </div>
-      <div class="partners-grid">
-        <div class="partner-card reveal">Apple</div>
-        <div class="partner-card reveal">Samsung</div>
-        <div class="partner-card reveal">Xiaomi</div>
-        <div class="partner-card reveal">Oppo</div>
-        <div class="partner-card reveal">Vivo</div>
-        <div class="partner-card reveal">Realme</div>
-        <div class="partner-card reveal">Tecno</div>
-        <div class="partner-card reveal">Infinix</div>
-        <div class="partner-card reveal">Intel</div>
-        <div class="partner-card reveal">Soraspace</div>
-        <div class="partner-card reveal">Ugreen</div>
-        <div class="partner-card reveal">Anker</div>
-        <div class="partner-card reveal">Robot</div>
-        <div class="partner-card reveal">Vivan</div>
-        <div class="partner-card reveal">Gamen</div>
-        <div class="partner-card reveal">Acome</div>
-        <div class="partner-card reveal">Olike</div>
-        <div class="partner-card reveal">Jisulife</div>
-        <div class="partner-card reveal">Titon</div>
-        <div class="partner-card reveal">Inbox</div>
-        <div class="partner-card reveal">Kiip</div>
-      </div>
-      <div class="partners-grid">
-        <div class="partner-card reveal">Apple</div>
-        <div class="partner-card reveal">Samsung</div>
-        <div class="partner-card reveal">Xiaomi</div>
+      <!-- Group 1 (Asli) -->
+      <div class="partners-group">
+        <div class="partner-card reveal"><img src="assets/apple-logo.png"></div>
+        <div class="partner-card reveal"><img src="assets/samsung-logo.png"></div>
+        <div class="partner-card reveal"><img src="assets/xiaomi-logo.png"></div>
         <div class="partner-card reveal">Oppo</div>
         <div class="partner-card reveal">Vivo</div>
         <div class="partner-card reveal">Realme</div>
@@ -1373,6 +1360,30 @@
         <div class="partner-card reveal">Kiip</div>
       </div>
 
+      <!-- Group 2 (Duplikat untuk efek seamless) -->
+      <div class="partners-group" aria-hidden="true">
+        <div class="partner-card reveal"><img src="assets/apple-logo.png"></div>
+        <div class="partner-card reveal"><img src="assets/samsung-logo.png"></div>
+        <div class="partner-card reveal"><img src="assets/xiaomi-logo.png"></div>
+        <div class="partner-card reveal">Oppo</div>
+        <div class="partner-card reveal">Vivo</div>
+        <div class="partner-card reveal">Realme</div>
+        <div class="partner-card reveal">Tecno</div>
+        <div class="partner-card reveal">Infinix</div>
+        <div class="partner-card reveal">Intel</div>
+        <div class="partner-card reveal">Soraspace</div>
+        <div class="partner-card reveal">Ugreen</div>
+        <div class="partner-card reveal">Anker</div>
+        <div class="partner-card reveal">Robot</div>
+        <div class="partner-card reveal">Vivan</div>
+        <div class="partner-card reveal">Gamen</div>
+        <div class="partner-card reveal">Acome</div>
+        <div class="partner-card reveal">Olike</div>
+        <div class="partner-card reveal">Jisulife</div>
+        <div class="partner-card reveal">Titon</div>
+        <div class="partner-card reveal">Inbox</div>
+        <div class="partner-card reveal">Kiip</div>
+      </div>
     </div>
   </div>
 </section>
