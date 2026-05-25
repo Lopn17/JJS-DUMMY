@@ -6,6 +6,7 @@
 <title>Justin Jaya Store - Premium Smart Gadget & Accessories</title>
 <link rel="icon" type="image/png" href="assets/jjs-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   :root {
     --navy: #0B1F3A;
@@ -935,9 +936,19 @@
     box-shadow: var(--shadow-blue); border-color: var(--blue);
   }
   .social-card:hover .social-icon, .social-card:hover .social-name { color: #fff !important; }
-  .social-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; transition: color .2s; }
+  .social-icon { 
+    font-size: 1.8rem; margin-bottom: 10px; display: block; transition: color .2s; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; 
+    height: 60px; 
+    background-color: #20467b; 
+    border-radius: 50%; 
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.7), 0 0 30px rgba(0, 150, 255, 0.4);
+  }
   .social-name { font-weight: 700; font-size: .88rem; color: rgba(255,255,255,.8); transition: color .2s; }
-
+  .icons{ color: white; font-size: 28px; }
   .contact-cta {
     max-width: 580px; margin: 0 auto;
     background: var(--navy);
@@ -1402,8 +1413,6 @@
         <div class="partner-card reveal"><img src="assets/olike-logo.png" alt="Olike Logo"></div>
         <div class="partner-card reveal"><img src="assets/acome-logo.png" alt="Acome Logo"></div>
         <div class="partner-card reveal"><img src="assets/gamen-logo.png" alt="Gamen Logo"></div>
-        <div class="partner-card reveal">Inbox</div>
-        <div class="partner-card reveal">Titon</div>
         <div class="partner-card reveal"><img src="assets/kiip-logo.png" alt="Kiip Logo"></div>
       </div>
 
@@ -1431,8 +1440,6 @@
         <div class="partner-card reveal"><img src="assets/olike-logo.png" alt="Olike Logo"></div>
         <div class="partner-card reveal"><img src="assets/acome-logo.png" alt="Acome Logo"></div>
         <div class="partner-card reveal"><img src="assets/gamen-logo.png" alt="Gamen Logo"></div>
-        <div class="partner-card reveal">Inbox</div>
-        <div class="partner-card reveal">Titon</div>
         <div class="partner-card reveal"><img src="assets/kiip-logo.png" alt="Kiip Logo"></div>
       </div>
     </div>
@@ -1560,29 +1567,35 @@
 
   <div class="social-grid">
     <a href="#" class="social-card reveal">
-      <span class="social-icon">🛍️</span>
-      <span class="social-name">Tokopedia</span>
+      <span class="social-icon">
+        <i class="icons fa-brands fa-facebook"></i>
+      </span>
+      <span class="social-name">Facebook</span>
     </a>
     <a href="#" class="social-card reveal">
-      <span class="social-icon">🛒</span>
-      <span class="social-name">Shopee</span>
+      <span class="social-icon">
+        <i class="icons fa-brands fa-youtube"></i>
+      </span>
+      <span class="social-name">Youtube</span>
     </a>
     <a href="#" class="social-card reveal">
-      <span class="social-icon">📦</span>
-      <span class="social-name">Lazada</span>
-    </a>
-    <a href="#" class="social-card reveal">
-      <span class="social-icon">📸</span>
+      <span class="social-icon">
+          <i class="icons fa-brands fa-instagram"></i>
+      </span>
       <span class="social-name">Instagram</span>
     </a>
     <a href="#" class="social-card reveal">
-      <span class="social-icon">🎵</span>
+      <span class="social-icon">
+        <i class="icons fa-brands fa-tiktok"></i>
+      </span><br>
       <span class="social-name">TikTok</span>
     </a>
   </div>
 
   <div class="contact-cta reveal">
-    <div class="cta-icon">💬</div>
+    <div class="cta-icon">
+      <i class="icons fa-brands fa-whatsapp"></i>
+    </div>
     <h2><span data-id="Chat Langsung di " data-en="Chat Directly on ">Chat Langsung di </span><span data-id="WhatsApp" data-en="WhatsApp">WhatsApp</span></h2>
     <p data-id="Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu." data-en="Have questions about products, orders, or partnerships? Our team is ready to help you 7 days a week.">Ada pertanyaan tentang produk, pesanan, atau kemitraan? Tim kami siap membantu Anda 7 hari seminggu.</p>
     <a href="https://api.whatsapp.com/send/?phone=6281288807388" class="wa-btn" target="_blank">
