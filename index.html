@@ -825,6 +825,7 @@
     border: 1px solid rgba(255,255,255,.1); border-radius: 22px;
     padding: 28px 16px; text-align: center;
     text-decoration: none; transition: all .25s; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center;
   }
   .social-card:hover {
     background: var(--blue); transform: translateY(-8px);
@@ -929,8 +930,18 @@
   }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .stats-row { grid-template-columns: repeat(2,1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Stats jadi bisa di-hold & di-slide horizontal (angka besar tidak terpotong) */
+    .stats-row {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: 14px;
+      padding-bottom: 10px;
+    }
+    .stat-card { flex: 0 0 auto; width: 220px; scroll-snap-align: start; }
 
     /* Nav jadi drawer + hamburger tampil */
     .nav-toggle { display: flex; }
@@ -1502,7 +1513,7 @@
     <a href="https://www.tiktok.com/@justinjayastore?_r=1&_t=ZS-96fh3Rcd1Ov" target="_blank" class="social-card reveal">
       <span class="social-icon">
         <i class="icons fa-brands fa-tiktok"></i>
-      </span><br>
+      </span>
       <span class="social-name">TikTok</span>
     </a>
   </div>
