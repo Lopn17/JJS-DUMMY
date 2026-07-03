@@ -136,6 +136,29 @@
   .nav-cta:hover { background: #1558d4 !important; transform: translateY(-1px); }
   .nav-cta::after { display: none !important; }
 
+  /* ─── MOBILE NAV TOGGLE (hamburger) ─── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px; height: 40px;
+    padding: 0 9px;
+    background: var(--pale);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 2px;
+    background: var(--navy); border-radius: 2px;
+    transition: transform .3s ease, opacity .3s ease;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ─── HERO ─── */
   #home {
     margin-top: var(--nav-h);
@@ -901,20 +924,93 @@
   @media (max-width: 1100px) {
     .nav-links { gap: 1rem; }
     .nav-links a { font-size: .78rem; }
+    .prod-btn.prev { left: 2rem; }
+    .prod-btn.next { right: 2rem; }
   }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .stats-row { grid-template-columns: repeat(2,1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; }
+
+    /* Nav jadi drawer + hamburger tampil */
+    .nav-toggle { display: flex; }
+    .lang-switch { margin-left: auto; }
+
+    .nav-links {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      margin-left: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--white);
+      padding: 6px 6vw 18px;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 16px 32px rgba(27,110,243,.12);
+      max-height: calc(100vh - var(--nav-h));
+      overflow-y: auto;
+      transform: translateY(-125%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .32s ease, opacity .32s ease;
+    }
+    .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      width: 100%;
+      padding: 15px 4px;
+      font-size: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links a::after { display: none; }
+    .nav-cta {
+      text-align: center;
+      margin-top: 12px;
+      border-bottom: none !important;
+      padding: 13px 20px !important;
+    }
   }
   @media (max-width: 768px) {
-    .slide { flex-direction: column; justify-content: center; text-align: center; padding-top: 3rem; }
-    .slide-img { width: 75%; margin: 2rem auto 0; }
-    nav { padding: 0 4vw; }
+    section { padding: 60px 6vw; }
+
+    /* Hero: tampilkan banner utuh, tidak ke-crop di layar sempit */
+    #home { height: auto; }
+    #home .slides, #home .slide { height: auto; }
+    .slide-banner-img { height: auto; width: 100%; object-fit: contain; }
+    .slide { flex-direction: column; justify-content: center; text-align: center; padding: 0; }
+    .carousel-btn { width: 40px; height: 40px; font-size: .9rem; }
+    .carousel-btn.prev { left: .8rem; }
+    .carousel-btn.next { right: .8rem; }
+    .carousel-controls { bottom: 1rem; }
+
+    nav { padding: 0 4vw; gap: 1rem; }
+
+    /* Produk: scroll sentuh native (panah disembunyikan di HP) */
+    .products-track-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; padding: 0 16px 6px; }
+    .products-track { transform: none !important; transition: none; }
+    .product-card { scroll-snap-align: start; min-width: 72vw; }
+    .product-img { height: 200px; }
+
+    .stats-row { margin-top: 3rem; }
+    .contact-cta { padding: 40px 22px; }
+    .contact-cta h2 { font-size: 1.5rem; }
+    .social-card { width: calc(50% - 10px); }
+
     .review-slide { flex-direction: column; }
-    .review-video { flex: none; width: 100%; }
+    .review-video { flex: none; width: 100%; height: 220px; }
+    .review-content { padding: 26px; }
     .footer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 430px) {
+    .logo-sub { display: none; }
+    .logo-name { font-size: 1rem; }
+    .logo-icon { width: 42px; height: 42px; }
+    .lang-btn { padding: 5px 7px; font-size: .7rem; }
+    .section-sub { font-size: .92rem; }
+    .partner-card { width: 150px; height: 82px; }
+    .logo-track img { width: 110px; }
+    .social-grid { gap: 12px; }
   }
 </style>
 </head>
@@ -934,7 +1030,7 @@
 
   <!-- Language Switcher -->
   
-  <ul class="nav-links">
+  <ul class="nav-links" id="navMenu">
     <li><a href="#home" data-id="Beranda" data-en="Home">Beranda</a></li>
     <li><a href="#about" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a></li>
     <li><a href="#services" data-id="Layanan" data-en="Services">Layanan</a></li>
@@ -948,6 +1044,9 @@
     <button onclick="switchLanguage('id')" class="lang-btn active" id="btn-id">🇮🇩 ID</button>
     <button onclick="switchLanguage('en')" class="lang-btn" id="btn-en">🇬🇧 EN</button>
   </div>
+  <button class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1501,6 +1600,35 @@ function switchLanguage(lang) {
 
   localStorage.setItem('preferredLang', lang);
 }
+
+// ============================================================
+// MOBILE MENU (hamburger drawer)
+// ============================================================
+function toggleMenu() {
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  const isOpen = menu.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function closeMenu() {
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  menu.classList.remove('open');
+  toggle.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+}
+
+// Tutup drawer ketika salah satu link di-tap
+document.querySelectorAll('#navMenu a').forEach(a => {
+  a.addEventListener('click', closeMenu);
+});
+
+// Tutup drawer jika layar diperbesar kembali ke desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) closeMenu();
+});
 
 // ============================================================
 // HERO CAROUSEL
